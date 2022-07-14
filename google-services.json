@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "217907297484",
+    "project_id": "ristresso",
+    "storage_bucket": "ristresso.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:217907297484:android:74d2e05a0cd6b09e1c9669",
+        "android_client_info": {
+          "package_name": "com.dimetris.ristrettohost"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "217907297484-h7puapqbvqa5m887crdjrl5pm2qbansl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dimetris.ristrettohost",
+            "certificate_hash": "41525180516061fa24e5b9f925bd20766dad92de"
+          }
+        },
+        {
+          "client_id": "217907297484-9lb75ug66b5gjnjhc7hbg7eqlp7blei1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5yZIA7_ZMZIuIWwwdxlHTnEwEeBuI02Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "217907297484-9lb75ug66b5gjnjhc7hbg7eqlp7blei1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
