@@ -20,6 +20,8 @@ class MainActivity : AppCompatActivity() {
     val PermissionsList = ArrayList<String>()
     val sMSReceiver = SMSReceiver()
 
+    var cursor: Cursor? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,15 +39,15 @@ class MainActivity : AppCompatActivity() {
 
             val myMessage: Uri = Uri.parse("content://sms/")
             val cr: ContentResolver = contentResolver
-            val c = cr.query(
+            cursor = cr.query(
                 myMessage, arrayOf(
                     "_id",
                     "address", "date", "body", "read"
                 ), null,
                 null, null
             )
-            startManagingCursor(c)
-            getSmsLogs(c!!, this)
+//            startManagingCursor(cursor)
+            getSmsLogs(cursor!!, this)
             Log.e("lastSMSId", "$sms_num?")
             Log.e("lastSMSBody", "$sms_body?")
 
@@ -106,31 +108,19 @@ class MainActivity : AppCompatActivity() {
 //                    sms_body.add(Body)
                 } while (c.moveToNext())
             }
-            c.close()
         } catch (e: Exception) {
             e.printStackTrace()
         }
     }
 
 
-    fun findSlotFromSubId(sm: SubscriptionManager, subId: Int): Int {
-        try {
-            for (s in sm.activeSubscriptionInfoList) {
-                if (s.subscriptionId == subId) {
-                    return s.simSlotIndex
-                }
-            }
-        } catch (e: SecurityException) {
-            e.printStackTrace()
-        }
-        return -1
+    override fun onDestroy() {
+        super.onDestroy()
+        unregisterReceiver(sMSReceiver)
     }
-
-
-
 
     override fun onStop() {
         super.onStop()
-        unregisterReceiver(sMSReceiver)
+        cursor!!.close()
     }
 }

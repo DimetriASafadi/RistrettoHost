@@ -4,12 +4,19 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.telephony.SubscriptionManager
 import android.util.Log
+import android.widget.Toast
 import java.util.*
 
 
 class SMSReceiver: BroadcastReceiver() {
+
+    lateinit var subscriptionManager:SubscriptionManager
     override fun onReceive(p0: Context?, p1: Intent?) {
+
+        subscriptionManager = SubscriptionManager.from(p0!!.applicationContext)
+
 
         val extras: Bundle = p1?.extras!!
         if (extras != null) {
@@ -28,22 +35,20 @@ class SMSReceiver: BroadcastReceiver() {
 
             }
 
-            Log.e("SIMDetection",detectSim(extras).toString())
+            Log.e("SIMDetection",detectSim(extras, p0,subscriptionManager).toString())
         }
 
     }
 
-    private fun detectSim(bundle: Bundle): String? {
+    private fun detectSim(bundle: Bundle,context: Context,subscriptionManager:SubscriptionManager): String? {
         var slot = -1
         val keySet = bundle.keySet()
         for (key in keySet) {
             when (key) {
-
                 "phone" ->{
                     slot = bundle.getInt("phone", -1)
                     Log.e("keyname", key.toString())
                 }
-
                 "slot" ->
                     {slot = bundle.getInt("slot", -1)
                         Log.e("keyname", key.toString())
@@ -90,13 +95,40 @@ class SMSReceiver: BroadcastReceiver() {
         }
 
         Log.e("KKK", slot.toString())
+
+        if (bundle.containsKey("subscription")){
+            val subid = bundle.getInt("subscription",-1)
+            Log.e("GotButSubsribtionId",findSlotFromSubId(subscriptionManager,subid).toString())
+        }
+
+
+
+
         return if (slot == 0) {
+            Toast.makeText(context, "sim1", Toast.LENGTH_SHORT).show()
             "sim1"
         } else if (slot == 1) {
+            Toast.makeText(context, "sim2", Toast.LENGTH_SHORT).show()
             "sim2"
         } else {
+            Toast.makeText(context, "undetected", Toast.LENGTH_SHORT).show()
             "undetected"
         }
+
+
+    }
+
+    fun findSlotFromSubId(sm: SubscriptionManager, subId: Int): Int {
+        try {
+            for (s in sm.activeSubscriptionInfoList) {
+                if (s.subscriptionId == subId) {
+                    return s.simSlotIndex
+                }
+            }
+        } catch (e: SecurityException) {
+            e.printStackTrace()
+        }
+        return -1
     }
 
 
