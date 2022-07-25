@@ -7,4 +7,37 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+
+    <color name="ris_white">#FFFFFF</color>
+    <color name="ris_orange">#F6AD00</color>
+    <color name="ris_red">#FF0000</color>
+    <color name="ris_red_2">#E86261</color>
+    <color name="ris_weak_red_2">#FFF2F2</color>
+    <color name="ris_green">#125D01</color>
+    <color name="ris_green_1">#7ED321</color>
+    <color name="ris_weak_green">#EAFFE5</color>
+    <color name="ris_orange_weak">#FFFBF2</color>
+    <color name="ris_orange_weak_2">#FFF5DD</color>
+    <color name="ris_grey">#B2B2B2</color>
+    <color name="ris_grey_1">#D9D9D9</color>
+    <color name="ris_grey_2">#EFEFEF</color>
+    <color name="ris_grey_3">#BBBBBB</color>
+    <color name="ris_grey_4">#F7F7F7</color>
+    <color name="ris_grey_5">#FCFCFC</color>
+    <color name="ris_grey_6">#F8F8F8</color>
+    <color name="ris_grey_7">#9C9C9C</color>
+    <color name="ris_grey_8">#D8D8D8</color>
+    <color name="ris_grey_9">#F6F6F6</color>
+    <color name="ris_weak_black">#51B2B2B2</color>
+    <color name="ris_weak_black_2">#1E1E1E</color>
+    <color name="ris_weak_black_3">#1E2022</color>
+
+    <color name="ris_menu_unselected">#CDCDCD</color>
+    <color name="ris_menu_selected">#F9A236</color>
+
+
+    <color name="tk_dialog_bg">#65000000</color>
+    <color name="tk_transparent">#00000000</color>
+    <color name="tk_weak_black">#32000000</color>
 </resources>
