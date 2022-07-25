@@ -4,6 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/AndroidProjects/Ristretto/app/src/main/res/drawable/ris_radius_fill_light.xml" value="0.3135" />
+        <entry key="..\:/AndroidProjects/Ristretto/app/src/main/res/drawable/ris_radius_fill_light_green.xml" value="0.3135" />
+        <entry key="..\:/AndroidProjects/Ristretto/app/src/main/res/drawable/ris_radius_stroke_light_green.xml" value="0.3135" />
         <entry key="..\:/AndroidProjects/Ristretto/app/src/main/res/font/fonts.xml" value="0.3958333333333333" />
         <entry key="..\:/AndroidProjects/Ristretto/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/AndroidProjects/Ristretto/app/src/main/res/layout/rec_item_category.xml" value="0.365625" />
