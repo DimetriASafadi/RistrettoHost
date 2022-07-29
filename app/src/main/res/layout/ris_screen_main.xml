@@ -22,7 +22,34 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="القائمة"
-            android:textSize="@dimen/_14ssp" />
+            android:textSize="@dimen/_16ssp"
+            android:fontFamily="@font/tajawal_bold"
+            android:textColor="@color/ris_white"
+            android:background="@color/ris_light_green"
+            android:paddingVertical="@dimen/_5sdp"
+            />
+
+        <AutoCompleteTextView
+            android:id="@+id/HEDSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ris_radius_fill_light"
+            android:backgroundTint="@color/ris_grey_4"
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:hint="بحث"
+            android:fontFamily="@font/tajawal_medium"
+            android:paddingVertical="@dimen/_10sdp"
+            android:inputType="text"
+            android:imeOptions="actionDone"
+            android:textSize="@dimen/_12ssp"
+            android:drawableStart="@drawable/ris_search_icon"
+            android:drawablePadding="@dimen/_5sdp"
+            android:paddingHorizontal="@dimen/_5sdp"
+            android:lines="1"
+            android:textColorHint="@color/ris_grey"
+            android:textColor="@color/ris_weak_black_2"
+            />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/CategoryRecycler"

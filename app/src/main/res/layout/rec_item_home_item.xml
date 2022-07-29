@@ -1,7 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="@dimen/_100sdp"
+    android:orientation="horizontal"
+    android:layout_margin="@dimen/_10sdp"
+    android:background="@drawable/ris_radius_fill_light"
+    android:gravity="center_vertical"
+    android:backgroundTint="@color/ris_orange_weak"
+    >
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:id="@+id/ItemCategoryIcon"
+        android:src="@drawable/ris_cat_hotdrink_icon"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        />
+
+    <View
+        android:layout_width="@dimen/_3sdp"
+        android:layout_height="match_parent"
+        android:background="@color/ris_light_green"
+        android:layout_marginVertical="@dimen/_10sdp"
+        />
+
+    <TextView
+        android:id="@+id/ItemName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="قهوة ريستريسو الإيطالية"
+        android:fontFamily="@font/tajawal_bold"
+        android:textSize="@dimen/_14ssp"
+        android:layout_margin="@dimen/_10sdp"
+        android:textColor="@color/ris_grey_7"
+        />
+
+
+</LinearLayout>

@@ -17,10 +17,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RistrettoHost"
         tools:targetApi="31">
-
+        <activity
+            android:name=".SplashScreen"
+            android:exported="false" />
+        <activity
+            android:name=".HostSection.ItemScreen"
+            android:exported="false"
+            android:theme="@style/Theme.RistrettoHost" />
         <activity
             android:name=".HostSection.MainScreen"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.RistrettoHost">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
