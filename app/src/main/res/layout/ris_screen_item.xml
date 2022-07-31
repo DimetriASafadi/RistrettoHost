@@ -62,12 +62,33 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="التصنيف : وجبة إفطار"
-        android:textSize="@dimen/_12ssp"
-        android:fontFamily="@font/tajawal_medium"
-        android:textColor="@color/ris_weak_black_3"
+        android:text="التصنيف"
+        android:textSize="@dimen/_14ssp"
+        android:fontFamily="@font/tajawal_bold"
+        android:textColor="@color/ris_light_green"
         android:layout_margin="@dimen/_10sdp"
         />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="السعر"
+        android:textSize="@dimen/_14ssp"
+        android:fontFamily="@font/tajawal_bold"
+        android:textColor="@color/ris_light_green"
+        android:layout_margin="@dimen/_10sdp"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="تكاليف إضافية"
+        android:textSize="@dimen/_14ssp"
+        android:fontFamily="@font/tajawal_bold"
+        android:textColor="@color/ris_light_green"
+        android:layout_margin="@dimen/_10sdp"
+        />
+
 
 
 
