@@ -26,17 +26,17 @@
             android:src="@drawable/ris_back_return_icon" />
 
         <TextView
+            android:id="@+id/ItemName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:layout_toStartOf="@+id/otherBtn"
             android:layout_toEndOf="@+id/backBtn"
-            android:text="ايس كوفي زاكي"
-            android:layout_centerVertical="true"
-            android:gravity="center"
             android:fontFamily="@font/tajawal_bold"
-            android:textSize="@dimen/_14ssp"
+            android:gravity="center"
+            android:text="ايس كوفي زاكي"
             android:textColor="@color/ris_weak_black_2"
-            />
+            android:textSize="@dimen/_14ssp" />
 
         <ImageView
             android:id="@+id/otherBtn"
@@ -54,6 +54,7 @@
 
 
     <ImageView
+        android:id="@+id/ItemCategoryIcon"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_70sdp"
         android:src="@drawable/ris_cat_breakfast_icon"
@@ -64,9 +65,20 @@
         android:layout_height="wrap_content"
         android:text="التصنيف"
         android:textSize="@dimen/_14ssp"
-        android:fontFamily="@font/tajawal_bold"
+        android:fontFamily="@font/tajawal_medium"
         android:textColor="@color/ris_light_green"
         android:layout_margin="@dimen/_10sdp"
+        />
+
+    <TextView
+        android:id="@+id/ItemCategoryName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="وجبة إفطار"
+        android:textSize="@dimen/_12ssp"
+        android:fontFamily="@font/tajawal_bold"
+        android:textColor="@color/ris_weak_black_2"
+        android:layout_marginHorizontal="@dimen/_10sdp"
         />
 
     <TextView
@@ -74,20 +86,47 @@
         android:layout_height="wrap_content"
         android:text="السعر"
         android:textSize="@dimen/_14ssp"
-        android:fontFamily="@font/tajawal_bold"
+        android:fontFamily="@font/tajawal_medium"
         android:textColor="@color/ris_light_green"
         android:layout_margin="@dimen/_10sdp"
         />
+    
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/ItemPrices"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="تكاليف إضافية"
         android:textSize="@dimen/_14ssp"
-        android:fontFamily="@font/tajawal_bold"
+        android:fontFamily="@font/tajawal_medium"
         android:textColor="@color/ris_light_green"
         android:layout_margin="@dimen/_10sdp"
         />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:id="@+id/Item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="بوظة إضافية 2 شيكل"
+            android:fontFamily="@font/tajawal_bold"
+            android:textSize="@dimen/_12ssp"
+            android:textColor="@color/ris_pink"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            />
+
+
+    </LinearLayout>
 
 
 
