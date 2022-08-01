@@ -112,6 +112,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_marginHorizontal="@dimen/_10sdp"
         >
 
         <TextView
@@ -123,6 +124,12 @@
             android:textSize="@dimen/_12ssp"
             android:textColor="@color/ris_pink"
             android:layout_marginHorizontal="@dimen/_10sdp"
+            />
+
+        <CheckBox
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:buttonTint="@color/ris_pink"
             />
 
 
