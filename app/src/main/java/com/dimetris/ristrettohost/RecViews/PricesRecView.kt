@@ -34,8 +34,8 @@ class PricesRecView(val data : ArrayList<RISCost>, val context: Context) : Recyc
 }
 class PriceViewHolder (view: View) : RecyclerView.ViewHolder(view) {
     // Holds the TextView that will add each animal to
-//    val PriceName = view.findViewById<TextView>(R.id.PriceName)
-//    val PriceValue = view.findViewById<TextView>(R.id.PriceValue)
+    val PriceName = view.findViewById<TextView>(R.id.PriceName)
+    val PriceValue = view.findViewById<TextView>(R.id.PriceValue)
 
 
 }

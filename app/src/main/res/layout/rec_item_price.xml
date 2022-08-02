@@ -8,6 +8,7 @@
     android:gravity="center"
     >
     <TextView
+        android:id="@+id/PriceName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="حجم وسط"
@@ -16,13 +17,16 @@
         />
 
     <TextView
+        android:id="@+id/PriceValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="15 شيكل"
+        android:layout_marginTop="@dimen/_5sdp"
         android:fontFamily="@font/tajawal_bold"
         android:textColor="@color/ris_pink"
-        android:paddingHorizontal="@dimen/_5sdp"
-        android:paddingVertical="@dimen/_2sdp"
+        android:paddingHorizontal="@dimen/_7sdp"
+        android:paddingVertical="@dimen/_5sdp"
+        android:background="@drawable/ris_radius_stroke_light_green"
         />
 
 

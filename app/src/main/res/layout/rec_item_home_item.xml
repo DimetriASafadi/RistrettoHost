@@ -11,9 +11,9 @@
     >
 
     <ImageView
+        android:id="@+id/ItemCategoryIcon"
         android:layout_width="@dimen/_40sdp"
         android:layout_height="@dimen/_40sdp"
-        android:id="@+id/ItemCategoryIcon"
         android:src="@drawable/ris_cat_hotdrink_icon"
         android:layout_marginHorizontal="@dimen/_10sdp"
         />
