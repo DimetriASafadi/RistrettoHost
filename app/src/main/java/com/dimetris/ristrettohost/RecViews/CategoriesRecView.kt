@@ -8,10 +8,11 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.dimetris.ristrettohost.InterFaces.OnCategoryClick
 import com.dimetris.ristrettohost.Models.RISCategory
 import com.dimetris.ristrettohost.R
 
-class CategoriesRecView(val data : ArrayList<RISCategory>, val context: Context) : RecyclerView.Adapter<CategoryViewHolder>() {
+class CategoriesRecView(val data : ArrayList<RISCategory>, val context: Context,val onCategoryClick: OnCategoryClick) : RecyclerView.Adapter<CategoryViewHolder>() {
 
     var selectedItem = 0
 
@@ -37,6 +38,7 @@ class CategoriesRecView(val data : ArrayList<RISCategory>, val context: Context)
         holder.CateogoryName.text = data[position].CatName
 
         holder.CateogoryName.setOnClickListener {
+            onCategoryClick.OnCategoryClickListener(data[position].CatId!!)
             selectedItem = position
             notifyDataSetChanged()
         }

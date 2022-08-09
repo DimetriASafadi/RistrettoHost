@@ -3,6 +3,8 @@ package com.dimetris.ristrettohost.HostSection
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.dimetris.ristrettohost.Adapters.ItemsListAdapter
+import com.dimetris.ristrettohost.InterFaces.OnCategoryClick
 import com.dimetris.ristrettohost.Models.RISAdditionalCost
 import com.dimetris.ristrettohost.Models.RISCategory
 import com.dimetris.ristrettohost.Models.RISCost
@@ -12,12 +14,15 @@ import com.dimetris.ristrettohost.RecViews.CategoriesRecView
 import com.dimetris.ristrettohost.RecViews.ItemsRecView
 import com.dimetris.ristrettohost.databinding.RisScreenMainBinding
 
-class MainScreen : AppCompatActivity() {
+class MainScreen : AppCompatActivity(), OnCategoryClick {
 
     lateinit var categoriesRecView: CategoriesRecView
     val risCategories = ArrayList<RISCategory>()
 
-    lateinit var itemsRecView: ItemsRecView
+//    lateinit var itemsRecView: ItemsRecView
+//    val risItems = ArrayList<RISItem>()
+
+    lateinit var itemsListAdapter: ItemsListAdapter
     val risItems = ArrayList<RISItem>()
 
     lateinit var binding:RisScreenMainBinding
@@ -203,18 +208,78 @@ class MainScreen : AppCompatActivity() {
         price43.add(RISCost(0,"شخصين",17))
         risItems.add(RISItem(42,"بوكس افطار ريستريتو (شخصين)",price43,"يتكون الصندوق من عدد 10 قطع ساليزون مشكّل (جبنة بيضاء, جبنة صفراء, لانشون, مرتديلا, صدر دجاج) مضافاً إليها الخضار حسب القطعة, بالإضافة إلى صوصّات ريستريتو, وقطعتين تارت للتحلية",risCategories[3],false,null))
         val price44 = ArrayList<RISCost>()
-        price44.add(RISCost(0,"شخصين",4))
-        risItems.add(RISItem(43,"بوكس افطار ريستريتو (شخصين)",price44,"يتكون الصندوق من عدد 10 قطع ساليزون مشكّل (جبنة بيضاء, جبنة صفراء, لانشون, مرتديلا, صدر دجاج) مضافاً إليها الخضار حسب القطعة, بالإضافة إلى صوصّات ريستريتو, وقطعتين تارت للتحلية",risCategories[3],false,null))
+        price44.add(RISCost(0,"",4))
+        risItems.add(RISItem(43,"توست",price44,"حسب الأطعمة المتوفرة يومياً (جبنة صفراء,بيضاء,لانشون)",risCategories[3],false,null))
+        val price45 = ArrayList<RISCost>()
+        price45.add(RISCost(0,"",6))
+        risItems.add(RISItem(44,"سلامي",price45,"حسب الأطعمة المتوفرة يومياً (جبنة صفراء,بيضاء,لانشون)",risCategories[3],false,null))
+        val price46 = ArrayList<RISCost>()
+        price46.add(RISCost(0,"",3))
+        risItems.add(RISItem(45,"معجنات اللحم وعجين",price46,"حجم صغير (ميني)",risCategories[3],false,null))
+        val price47 = ArrayList<RISCost>()
+        price47.add(RISCost(0,"",5))
+        risItems.add(RISItem(46,"سلطة ريستريتو اليومية",price47,"تصنع يومياً وخصيصاً, وتتكون من قطع الخضروات بحجم وسط, مع الجبنة البلدية البيضاء",risCategories[3],false,null))
+        val price48 = ArrayList<RISCost>()
+        price48.add(RISCost(0,"",4))
+        risItems.add(RISItem(47,"باجيت جبنة بلدية",price48,"حسب الأطعمة المتوفرة يومياً, ويقدم من الثلاجة فورا",risCategories[3],false,null))
+        val price49 = ArrayList<RISCost>()
+        price49.add(RISCost(0,"",2))
+        risItems.add(RISItem(48,"المعجنات صغيرة",price49,"حسب المتوفر يوميا (البيتزا, نقانق, الجبنة, الزعتر)",risCategories[3],false,null))
+        val price50 = ArrayList<RISCost>()
+        price50.add(RISCost(0,"",5))
+        risItems.add(RISItem(49,"سلطة سيزر",price50,"تصنع يومياً وخصيصاً, وتتكون من قطع الخضروات بحجم وسط, مع قطع الخبز المحمص",risCategories[3],false,null))
 
-        categoriesRecView = CategoriesRecView(risCategories,this)
+        val price51 = ArrayList<RISCost>()
+        price51.add(RISCost(0,"(الحجم العادي)",10))
+        val adprice2 = RISAdditionalCost(0,"2 شيكل إضافية عند إضافة البوظة على الوافل",2)
+        risItems.add(RISItem(50,"حلوى الوافل",price51,"متوفر بطعم (نوتيلا, لوتس, بستاشيو) ويضاف إليها المكسرات",risCategories[4],false,adprice2))
+        val price52 = ArrayList<RISCost>()
+        price52.add(RISCost(0,"(الحجم العادي)",15))
+        risItems.add(RISItem(51,"حلوى الوافل ميكس",price52,"متوفر بطعم (نوتيلا, لوتس, بستاشيو) ويضاف إليها المكسرات",risCategories[4],false,null))
+        val price53 = ArrayList<RISCost>()
+        price53.add(RISCost(0,"(الحجم العادي)",12))
+        val adprice3 = RISAdditionalCost(0,"2 شيكل إضافية عند إضافة البوظة على الكريب",2)
+        risItems.add(RISItem(52,"حلوى الكريب",price53,"متوفر بطعم (نوتيلا, لوتس, بستاشيو) ويضاف إليها المكسرات",risCategories[4],false,adprice3))
+        val price54 = ArrayList<RISCost>()
+        price54.add(RISCost(0,"(الحجم العادي)",10))
+        val adprice4 = RISAdditionalCost(0,"2 شيكل إضافية عند إضافة البوظة على اللقيمات",2)
+        risItems.add(RISItem(53,"لقيمات",price54,"متوفر بطعم (نوتيلا, لوتس, بستاشيو) ويضاف إليها المكسرات",risCategories[4],false,adprice4))
+        val price55 = ArrayList<RISCost>()
+        price55.add(RISCost(0,"(الحجم العادي)",10))
+        val adprice5 = RISAdditionalCost(0,"2 شيكل إضافية عند إضافة البوظة على البان كيك",2)
+        risItems.add(RISItem(54,"بان كيك",price55,"متوفر بطعم (نوتيلا, لوتس, بستاشيو) ويضاف إليها المكسرات",risCategories[4],false,adprice5))
+        val price56 = ArrayList<RISCost>()
+        price56.add(RISCost(0,"(الحجم العادي)",5))
+        risItems.add(RISItem(55,"كرواسون",price56,"حسب الأطعمة المتوفرة يومياً",risCategories[4],false,null))
+        val price57 = ArrayList<RISCost>()
+        price57.add(RISCost(0,"(الحجم العادي)",5))
+        risItems.add(RISItem(56,"كيك",price57,"متوفر بطعم (الشوكولاتة, الكراميل)",risCategories[4],false,null))
+        val price58 = ArrayList<RISCost>()
+        price58.add(RISCost(0,"(الحجم العادي)",15))
+        risItems.add(RISItem(57,"سيزلنغ ريستريتو",price58,"محيط من الشوكولاتة الساخنة والبراونيز الداكنة مغطاة بالآيس كريم المثالي",risCategories[4],false,null))
+        val price59 = ArrayList<RISCost>()
+        price59.add(RISCost(0,"(الحجم العادي)",12))
+        risItems.add(RISItem(58,"ذا قود فاذر",price59,"الآيسكريم بنكهات الفانيليا او الشوكولاتة مع عناصر ساخنة من كيكة الماربل والموفينز والبراونيز ممزوجة بالمكسرات وقطع الشوكولاتة",risCategories[4],false,null))
+        val price60 = ArrayList<RISCost>()
+        price60.add(RISCost(0,"",4))
+        risItems.add(RISItem(59,"ذا قود فاذر",price60,"قطع مخصصة من البسكويت والكيك بالشوكولاتة الأمريكية الفاخرة",risCategories[4],false,null))
+
+        categoriesRecView = CategoriesRecView(risCategories,this,this)
         binding.CategoryRecycler.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
         binding.CategoryRecycler.adapter = categoriesRecView
 
-        itemsRecView = ItemsRecView(risItems,this)
-        binding.ItemsRecycler.layoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
-        binding.ItemsRecycler.adapter = itemsRecView
+//        itemsRecView = ItemsRecView(risItems,this)
+//        binding.ItemsRecycler.layoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
+//        binding.ItemsRecycler.adapter = itemsRecView
+
+        itemsListAdapter = ItemsListAdapter(this,risItems)
+        binding.ItemsListView.adapter = itemsListAdapter
 
 
+    }
 
+    override fun OnCategoryClickListener(catid: Int) {
+        itemsListAdapter.selectedCategory = catid
+        itemsListAdapter.notifyDataSetChanged()
     }
 }

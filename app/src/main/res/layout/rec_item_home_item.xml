@@ -8,6 +8,7 @@
     android:background="@drawable/ris_radius_fill_light"
     android:gravity="center_vertical"
     android:backgroundTint="@color/ris_orange_weak"
+    android:id="@+id/WholeItem"
     >
 
     <ImageView
