@@ -2,8 +2,8 @@ package com.dimetris.ristrettohost.HostSection
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.dimetris.ristrettohost.Adapters.ItemsListAdapter
 import com.dimetris.ristrettohost.InterFaces.OnCategoryClick
 import com.dimetris.ristrettohost.Models.RISAdditionalCost
 import com.dimetris.ristrettohost.Models.RISCategory
@@ -19,11 +19,9 @@ class MainScreen : AppCompatActivity(), OnCategoryClick {
     lateinit var categoriesRecView: CategoriesRecView
     val risCategories = ArrayList<RISCategory>()
 
-//    lateinit var itemsRecView: ItemsRecView
-//    val risItems = ArrayList<RISItem>()
-
-    lateinit var itemsListAdapter: ItemsListAdapter
+    lateinit var itemsRecView: ItemsRecView
     val risItems = ArrayList<RISItem>()
+
 
     lateinit var binding:RisScreenMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -268,18 +266,21 @@ class MainScreen : AppCompatActivity(), OnCategoryClick {
         binding.CategoryRecycler.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
         binding.CategoryRecycler.adapter = categoriesRecView
 
-//        itemsRecView = ItemsRecView(risItems,this)
-//        binding.ItemsRecycler.layoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
-//        binding.ItemsRecycler.adapter = itemsRecView
+        itemsRecView = ItemsRecView(risItems,this)
+        binding.ItemsRecycler.layoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
+        binding.ItemsRecycler.adapter = itemsRecView
 
-        itemsListAdapter = ItemsListAdapter(this,risItems)
-        binding.ItemsListView.adapter = itemsListAdapter
+
+        binding.HEDSearch.addTextChangedListener {
+            itemsRecView.nameQuery = binding.HEDSearch.text.toString()
+            itemsRecView.notifyDataSetChanged()
+        }
 
 
     }
 
     override fun OnCategoryClickListener(catid: Int) {
-        itemsListAdapter.selectedCategory = catid
-        itemsListAdapter.notifyDataSetChanged()
+        itemsRecView.selectedCategory = catid
+        itemsRecView.notifyDataSetChanged()
     }
 }

@@ -38,17 +38,36 @@ class ItemsRecView(val data : ArrayList<RISItem>, val context: Context) : Recycl
         holder.setIsRecyclable(false);
 
         if (selectedCategory != 0){
-            if (data[position].ItemCategory!!.CatId!! == selectedCategory){
-                holder.WholeItem.visibility = View.VISIBLE
+            if (!nameQuery.isNullOrEmpty()){
+                if (data[position].ItemCategory!!.CatId!! == selectedCategory && data[position].ItemName!!.contains(nameQuery) ){
+                    holder.WholeItem.visibility = View.VISIBLE
+                }else{
+                    holder.WholeItem.visibility = View.GONE
+                }
+            }else{
+                if (data[position].ItemCategory!!.CatId!! == selectedCategory){
+                    holder.WholeItem.visibility = View.VISIBLE
+                }else{
+                    holder.WholeItem.visibility = View.GONE
+                }
+            }
+
+        }
+        if (!nameQuery.isNullOrEmpty()){
+            if (data[position].ItemName!!.contains(nameQuery)){
+                if (selectedCategory != 0){
+                    if (data[position].ItemCategory!!.CatId!! == selectedCategory){
+                        holder.WholeItem.visibility = View.VISIBLE
+                    }else{
+                        holder.WholeItem.visibility = View.GONE
+                    }
+                }else{
+                    holder.WholeItem.visibility = View.VISIBLE
+                }
             }else{
                 holder.WholeItem.visibility = View.GONE
             }
         }
-//        if (!nameQuery.isNullOrEmpty()){
-//            if (data[position].ItemName!!.contains(nameQuery)){
-//
-//            }
-//        }
 
 
         holder.ItemCategoryIcon.setImageResource(data[position].ItemCategory!!.CatIcon!!)

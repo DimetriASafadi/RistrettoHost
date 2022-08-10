@@ -2,14 +2,21 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/_100sdp"
-    android:orientation="horizontal"
-    android:layout_margin="@dimen/_10sdp"
-    android:background="@drawable/ris_radius_fill_light"
-    android:gravity="center_vertical"
-    android:backgroundTint="@color/ris_orange_weak"
-    android:id="@+id/WholeItem"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+
     >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10sdp"
+        android:background="@drawable/ris_radius_fill_light"
+        android:gravity="center_vertical"
+        android:backgroundTint="@color/ris_orange_weak"
+        android:id="@+id/WholeItem"
+        android:orientation="horizontal"
+        android:paddingVertical="@dimen/_20sdp"
+        >
 
     <ImageView
         android:id="@+id/ItemCategoryIcon"
@@ -36,6 +43,6 @@
         android:layout_margin="@dimen/_10sdp"
         android:textColor="@color/ris_grey_7"
         />
-
+    </LinearLayout>
 
 </LinearLayout>
