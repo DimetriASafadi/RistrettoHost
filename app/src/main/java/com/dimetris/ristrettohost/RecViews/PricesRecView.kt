@@ -26,7 +26,8 @@ class PricesRecView(val data : ArrayList<RISCost>, val context: Context) : Recyc
 
 
 
-//        holder.BannerTitle.text = data[position].ItemName
+        holder.PriceName.text = data[position].CostName
+        holder.PriceValue.text = data[position].CostValue.toString() + " شيكل"
 
 
 

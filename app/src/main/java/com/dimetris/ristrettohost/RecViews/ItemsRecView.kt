@@ -1,6 +1,7 @@
 package com.dimetris.ristrettohost.RecViews
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.dimetris.ristrettohost.HostSection.ItemScreen
 import com.dimetris.ristrettohost.Models.RISItem
 import com.dimetris.ristrettohost.R
 
@@ -73,6 +75,11 @@ class ItemsRecView(val data : ArrayList<RISItem>, val context: Context) : Recycl
         holder.ItemCategoryIcon.setImageResource(data[position].ItemCategory!!.CatIcon!!)
         holder.ItemName.text = data[position].ItemName
 
+        holder.WholeItem.setOnClickListener {
+            val toDetails = Intent(context,ItemScreen::class.java)
+            toDetails.putExtra("selfData",data[position])
+            context.startActivity(toDetails)
+        }
 
 
     }

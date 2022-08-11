@@ -80,6 +80,26 @@
         android:textColor="@color/ris_weak_black_2"
         android:layout_marginHorizontal="@dimen/_10sdp"
         />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="الوصف"
+        android:textSize="@dimen/_14ssp"
+        android:fontFamily="@font/tajawal_medium"
+        android:textColor="@color/ris_light_green"
+        android:layout_margin="@dimen/_10sdp"
+        />
+
+    <TextView
+        android:id="@+id/ItemDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="وجبة إفطار"
+        android:textSize="@dimen/_11ssp"
+        android:fontFamily="@font/tajawal_bold"
+        android:textColor="@color/ris_weak_black_2"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        />
 
     <TextView
         android:layout_width="match_parent"
@@ -97,6 +117,13 @@
         android:layout_height="wrap_content"
         />
 
+
+    <LinearLayout
+        android:id="@+id/ItemAddCostArea"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
 
     <TextView
         android:layout_width="match_parent"
@@ -137,6 +164,7 @@
     </LinearLayout>
 
 
+    </LinearLayout>
 
 
 
