@@ -48,8 +48,8 @@
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginEnd="@dimen/_10sdp"
             android:layout_marginBottom="@dimen/_10sdp"
-            android:visibility="invisible"
-            android:src="@drawable/ris_back_return_icon" />
+            android:src="@drawable/ris_back_return_icon"
+            android:visibility="invisible" />
     </RelativeLayout>
 
 
@@ -116,7 +116,7 @@
         >
 
         <TextView
-            android:id="@+id/Item"
+            android:id="@+id/ItemAdditionalCostDesc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="بوظة إضافية 2 شيكل"
@@ -127,6 +127,7 @@
             />
 
         <CheckBox
+            android:id="@+id/ItemIsAddCost"
             android:layout_width="@dimen/_20sdp"
             android:layout_height="@dimen/_20sdp"
             android:buttonTint="@color/ris_pink"

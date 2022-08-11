@@ -13,6 +13,11 @@ class ItemScreen : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+        binding.backBtn
+        binding.ItemName
+        binding.ItemCategoryIcon
+        binding.ItemCategoryName
+        binding.ItemPrices
 
 
     }
