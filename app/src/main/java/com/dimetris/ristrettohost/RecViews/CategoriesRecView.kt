@@ -37,7 +37,7 @@ class CategoriesRecView(val data : ArrayList<RISCategory>, val context: Context,
         }
         holder.CateogoryName.text = data[position].CatName
 
-        holder.CateogoryName.setOnClickListener {
+        holder.CategoryBg.setOnClickListener {
             onCategoryClick.OnCategoryClickListener(data[position].CatId!!)
             selectedItem = position
             notifyDataSetChanged()

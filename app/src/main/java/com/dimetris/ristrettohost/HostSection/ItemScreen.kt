@@ -4,12 +4,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.dimetris.ristrettohost.CommonsSection.CommonFuncs
 import com.dimetris.ristrettohost.Models.RISCost
 import com.dimetris.ristrettohost.Models.RISItem
 import com.dimetris.ristrettohost.RecViews.PricesRecView
 import com.dimetris.ristrettohost.databinding.RisScreenItemBinding
 
 class ItemScreen : AppCompatActivity() {
+
+    val commonFuncs = CommonFuncs()
 
     lateinit var selfData:RISItem
 
@@ -19,6 +22,7 @@ class ItemScreen : AppCompatActivity() {
     lateinit var binding:RisScreenItemBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        commonFuncs.LanguageCheck(this)
         binding = RisScreenItemBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
@@ -44,6 +48,12 @@ class ItemScreen : AppCompatActivity() {
         }else{
             binding.ItemAddCostArea.visibility = View.VISIBLE
             binding.ItemAdditionalCostDesc.text = selfData.ItemAdditionalCost!!.AddCostDesc
+        }
+
+        binding.AddItem.setOnClickListener {
+
+
+
         }
 
 

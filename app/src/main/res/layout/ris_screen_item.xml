@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,6 +8,12 @@
     tools:context=".HostSection.ItemScreen"
     android:orientation="vertical"
     >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -140,12 +146,14 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginHorizontal="@dimen/_10sdp"
+        android:gravity="center_vertical"
         >
 
         <TextView
             android:id="@+id/ItemAdditionalCostDesc"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="بوظة إضافية 2 شيكل"
             android:fontFamily="@font/tajawal_bold"
             android:textSize="@dimen/_12ssp"
@@ -163,9 +171,47 @@
 
     </LinearLayout>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ملاحظات إضافية"
+            android:textSize="@dimen/_14ssp"
+            android:fontFamily="@font/tajawal_medium"
+            android:textColor="@color/ris_light_green"
+            android:layout_margin="@dimen/_10sdp"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_70sdp"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:padding="@dimen/_10sdp"
+            android:background="@drawable/ris_radius_fill_light"
+            android:backgroundTint="@color/ris_grey_6"
+            android:hint="اكتب هنا ملاحظة ..."
+            android:fontFamily="@font/tajawal_medium"
+            android:textSize="@dimen/_10ssp"
+            android:gravity="start"
+            />
+
+
+
 
     </LinearLayout>
 
-
-
-</LinearLayout>
+    <TextView
+        android:id="@+id/AddItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="إضافة العنصر"
+        android:fontFamily="@font/tajawal_bold"
+        android:paddingVertical="@dimen/_8sdp"
+        android:layout_margin="@dimen/_10sdp"
+        android:textSize="@dimen/_12ssp"
+        android:background="@drawable/ris_radius_fill_light"
+        android:backgroundTint="@color/ris_orange"
+        android:textColor="@color/ris_white"
+        />
+    </LinearLayout>
+</ScrollView>

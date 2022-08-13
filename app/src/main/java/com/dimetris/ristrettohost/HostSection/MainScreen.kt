@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.dimetris.ristrettohost.CommonsSection.CommonFuncs
 import com.dimetris.ristrettohost.InterFaces.OnCategoryClick
 import com.dimetris.ristrettohost.Models.RISAdditionalCost
 import com.dimetris.ristrettohost.Models.RISCategory
@@ -16,6 +17,8 @@ import com.dimetris.ristrettohost.databinding.RisScreenMainBinding
 
 class MainScreen : AppCompatActivity(), OnCategoryClick {
 
+    val commonFuncs = CommonFuncs()
+
     lateinit var categoriesRecView: CategoriesRecView
     val risCategories = ArrayList<RISCategory>()
 
@@ -26,6 +29,7 @@ class MainScreen : AppCompatActivity(), OnCategoryClick {
     lateinit var binding:RisScreenMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        commonFuncs.LanguageCheck(this)
         binding = RisScreenMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)

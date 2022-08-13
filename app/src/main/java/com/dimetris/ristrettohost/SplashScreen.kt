@@ -11,7 +11,9 @@ class SplashScreen : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        commonFuncs.LanguageCheck(this)
         setContentView(R.layout.ris_screen_splash)
+
 
 
         commonFuncs.finishSplash(this)
