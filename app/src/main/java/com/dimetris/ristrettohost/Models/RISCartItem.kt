@@ -9,6 +9,7 @@ data class RISCartItem(
     var ItemDescription:String? = "",
     var ItemCategory:RISCategory? = null,
     var ItemIsAdditionalCost:Boolean = false,
-    var ItemAdditionalCost:RISAdditionalCost? = null
+    var ItemAdditionalCost:RISAdditionalCost? = null,
+    var ItemNotes:String? = ""
 
 ): Serializable

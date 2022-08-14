@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginTop="@dimen/_10sdp"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        >
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:id="@+id/ItemName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="موهيتو بالجبنة المتبلة الزاكية جدا"
+            android:textSize="@dimen/_12ssp"
+            android:fontFamily="@font/tajawal_medium"
+            android:textColor="@color/ris_weak_black_2"
+            />
+        <TextView
+            android:id="@+id/ItemPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="السعر الطبيعي : حجم عادي 10 شيكل"
+            android:textColor="@color/ris_pink"
+            android:fontFamily="@font/tajawal_medium"
+            android:textSize="@dimen/_10ssp"
+            android:layout_marginTop="@dimen/_3sdp"
+            />
+        <TextView
+            android:id="@+id/ItemAdditionalCost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="تكاليف إضافية : بوظة إضافية 2 شيكل"
+            android:textColor="@color/ris_pink"
+            android:fontFamily="@font/tajawal_medium"
+            android:textSize="@dimen/_10ssp"
+            android:layout_marginTop="@dimen/_3sdp"
+            />
+        <TextView
+            android:id="@+id/ItemNotes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ملاحظات عن العنصر"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:textSize="@dimen/_10ssp"
+            android:fontFamily="@font/tajawal_medium"
+            android:textColor="@color/ris_orange"
+
+            />
+
+    </LinearLayout>
+
+        <TextView
+            android:id="@+id/ItemTotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12 شيكل"
+            android:textColor="@color/ris_pink"
+            android:fontFamily="@font/tajawal_bold"
+            android:textSize="@dimen/_11ssp"
+            />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.7dp"
+        android:background="@color/ris_weak_black_2"
+        android:alpha="0.5"
+        android:layout_marginTop="@dimen/_5sdp"
+        />
+
+</LinearLayout>
