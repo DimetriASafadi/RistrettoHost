@@ -44,6 +44,10 @@ class PricesRecView(val data : ArrayList<RISCost>, val context: Context) : Recyc
 
 
     }
+
+    fun getSelectedItem():RISCost{
+        return data[selectedItem]
+    }
 }
 class PriceViewHolder (view: View) : RecyclerView.ViewHolder(view) {
     // Holds the TextView that will add each animal to

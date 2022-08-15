@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dimetris.ristrettohost.CommonsSection.CommonFuncs
+import com.dimetris.ristrettohost.CommonsSection.Constants.cartItems
+import com.dimetris.ristrettohost.Models.RISCartItem
 import com.dimetris.ristrettohost.Models.RISCost
 import com.dimetris.ristrettohost.Models.RISItem
 import com.dimetris.ristrettohost.RecViews.PricesRecView
@@ -51,11 +53,12 @@ class ItemScreen : AppCompatActivity() {
         }
 
         binding.AddItem.setOnClickListener {
-
-
-
+            if (binding.ItemIsAddCost.isChecked){
+                cartItems.add(RISCartItem(selfData.ItemId,selfData.ItemName,pricesRecView.getSelectedItem(),selfData.ItemDescription,selfData.ItemCategory,true,selfData.ItemAdditionalCost,binding.ItemNotes.text.toString()))
+            }else{
+                cartItems.add(RISCartItem(selfData.ItemId,selfData.ItemName,pricesRecView.getSelectedItem(),selfData.ItemDescription,selfData.ItemCategory,false,null,binding.ItemNotes.text.toString()))
+            }
         }
-
 
     }
 }
