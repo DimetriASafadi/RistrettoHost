@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dimetris.ristrettohost.Models.RISCartItem
 import com.dimetris.ristrettohost.R
 
-class CartItemRecView (val data : ArrayList<RISCartItem>, val context: Context) : RecyclerView.Adapter<CItemViewHolder>() {
+class CartItemRecView(val data : ArrayList<RISCartItem>, val context: Context) : RecyclerView.Adapter<CItemViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CItemViewHolder {

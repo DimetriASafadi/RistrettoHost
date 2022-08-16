@@ -281,6 +281,11 @@ class MainScreen : AppCompatActivity(), OnCategoryClick {
         }
 
 
+        binding.ItemsCart.setOnClickListener {
+            commonFuncs.OpenCartDialog(this)
+        }
+
+
     }
 
     override fun OnCategoryClickListener(catid: Int) {

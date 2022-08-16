@@ -1,16 +1,25 @@
 package com.dimetris.ristrettohost.CommonsSection
 
 import android.app.Activity
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.res.Configuration
+import android.graphics.drawable.ColorDrawable
+import android.view.ViewGroup
+import android.view.Window
 import com.dimetris.ristrettohost.CommonsSection.Constants.AppSPName
 import com.dimetris.ristrettohost.CommonsSection.Constants.KeyAppLanguage
 import com.dimetris.ristrettohost.HostSection.MainScreen
+import com.dimetris.ristrettohost.R
 import java.util.*
 
 class CommonFuncs {
+
+
+    var cartDia: Dialog? = null
+
 
     fun finishSplash(activity: Activity){
         Timer().schedule(object : TimerTask() {
@@ -81,6 +90,30 @@ class CommonFuncs {
         val sharedPreferences: SharedPreferences = context.getSharedPreferences(AppSPName,
             Context.MODE_PRIVATE)
         return sharedPreferences.contains(key)
+    }
+
+
+    fun OpenCartDialog(activity: Activity){
+        hideLoadingDialog()
+        cartDia = Dialog(activity)
+        cartDia?.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        cartDia?.setCancelable(false)
+        cartDia?.setContentView(R.layout.ris_dialog_cart)
+        val window: Window = cartDia?.window!!
+        window.setBackgroundDrawable(
+            ColorDrawable(activity.resources
+                .getColor(R.color.tk_dialog_bg, null))
+        )
+        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+        cartDia?.show()
+    }
+    fun hideLoadingDialog(){
+        if (cartDia != null){
+            if (cartDia?.isShowing!!){
+                cartDia?.dismiss()
+                cartDia = null
+            }
+        }
     }
 
 }

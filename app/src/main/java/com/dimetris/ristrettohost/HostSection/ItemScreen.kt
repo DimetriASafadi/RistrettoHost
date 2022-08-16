@@ -60,5 +60,9 @@ class ItemScreen : AppCompatActivity() {
             }
         }
 
+        binding.ItemsCart.setOnClickListener {
+            commonFuncs.OpenCartDialog(this)
+        }
+
     }
 }
