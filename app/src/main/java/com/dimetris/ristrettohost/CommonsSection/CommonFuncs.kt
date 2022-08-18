@@ -9,10 +9,14 @@ import android.content.res.Configuration
 import android.graphics.drawable.ColorDrawable
 import android.view.ViewGroup
 import android.view.Window
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.dimetris.ristrettohost.CommonsSection.Constants.AppSPName
 import com.dimetris.ristrettohost.CommonsSection.Constants.KeyAppLanguage
+import com.dimetris.ristrettohost.CommonsSection.Constants.cartItems
 import com.dimetris.ristrettohost.HostSection.MainScreen
 import com.dimetris.ristrettohost.R
+import com.dimetris.ristrettohost.RecViews.CartItemRecView
+import com.dimetris.ristrettohost.databinding.RisDialogCartBinding
 import java.util.*
 
 class CommonFuncs {
@@ -97,8 +101,15 @@ class CommonFuncs {
         hideLoadingDialog()
         cartDia = Dialog(activity)
         cartDia?.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        cartDia?.setCancelable(false)
-        cartDia?.setContentView(R.layout.ris_dialog_cart)
+        cartDia?.setCancelable(true)
+        val dialogBind = RisDialogCartBinding.inflate(activity.layoutInflater)
+        val view = dialogBind.root
+        cartDia?.setContentView(view)
+
+        val cartItemRecView = CartItemRecView(cartItems,activity)
+        dialogBind.CartItemsRecycler.layoutManager = LinearLayoutManager(activity,LinearLayoutManager.VERTICAL,false)
+        dialogBind.CartItemsRecycler.adapter = cartItemRecView
+
         val window: Window = cartDia?.window!!
         window.setBackgroundDrawable(
             ColorDrawable(activity.resources
