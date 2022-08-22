@@ -110,6 +110,10 @@ class CommonFuncs {
         dialogBind.CartItemsRecycler.layoutManager = LinearLayoutManager(activity,LinearLayoutManager.VERTICAL,false)
         dialogBind.CartItemsRecycler.adapter = cartItemRecView
 
+        dialogBind.SendOrder.setOnClickListener {
+
+        }
+
         val window: Window = cartDia?.window!!
         window.setBackgroundDrawable(
             ColorDrawable(activity.resources

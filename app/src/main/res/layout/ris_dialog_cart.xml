@@ -1,27 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/temptv1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
+        android:gravity="center"
+        android:text="عربة الطلبات"
+        android:textSize="@dimen/_14ssp"
+        android:fontFamily="@font/tajawal_bold"
+        android:textColor="@color/ris_white"
+        android:background="@color/ris_light_green"
+        android:paddingVertical="@dimen/_5sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/temptv1">
 
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/CartItemsRecycler"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_20sdp"
-            />
-    </LinearLayout>
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/_100sdp"
+            >
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/CartItemsRecycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+        </LinearLayout>
+
+    </ScrollView>
+
+
+    <TextView
+        android:id="@+id/SendOrder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10sdp"
+        android:background="@drawable/ris_radius_fill_light"
+        android:backgroundTint="@color/ris_orange"
+        android:fontFamily="@font/tajawal_bold"
+        android:gravity="center"
+        android:paddingVertical="@dimen/_8sdp"
+        android:text="إضافة العنصر"
+        android:textColor="@color/ris_white"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 
-
-
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
