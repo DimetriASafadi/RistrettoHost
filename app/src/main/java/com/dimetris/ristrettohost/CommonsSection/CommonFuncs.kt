@@ -28,6 +28,8 @@ class CommonFuncs {
     fun finishSplash(activity: Activity){
         Timer().schedule(object : TimerTask() {
             override fun run() {
+
+                WriteOnSP(activity,"FirstTime","Passed")
                 val intent = Intent(activity, MainScreen::class.java).apply {}
                 activity.startActivity(intent)
                 activity.finish()
