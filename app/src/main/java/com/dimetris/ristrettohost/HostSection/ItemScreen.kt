@@ -58,11 +58,25 @@ class ItemScreen : AppCompatActivity() {
             }else{
                 cartItems.add(RISCartItem(selfData.ItemId,selfData.ItemName,pricesRecView.getSelectedItem(),selfData.ItemDescription,selfData.ItemCategory,false,null,binding.ItemNotes.text.toString()))
             }
+            commonFuncs.StoreCart(this,cartItems)
+            commonFuncs.GetCart(this)
+            commonFuncs.CheckCart(binding.ItemsCartCount)
         }
 
         binding.ItemsCart.setOnClickListener {
-            commonFuncs.OpenCartDialog(this)
+            commonFuncs.OpenCartDialog(this,binding.ItemsCartCount)
         }
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        commonFuncs.LanguageCheck(this)
+        commonFuncs.CheckCart(binding.ItemsCartCount)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        commonFuncs.hideLoadingDialog()
     }
 }

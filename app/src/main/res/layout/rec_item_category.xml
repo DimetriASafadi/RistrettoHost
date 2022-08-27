@@ -23,6 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="مشروبات"
+        android:textSize="@dimen/_10ssp"
         android:gravity="center"
         android:fontFamily="@font/tajawal_bold"
         android:paddingHorizontal="@dimen/_12sdp"

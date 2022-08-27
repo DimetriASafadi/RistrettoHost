@@ -2,9 +2,12 @@ package com.dimetris.ristrettohost.HostSection
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.TextView
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dimetris.ristrettohost.CommonsSection.CommonFuncs
+import com.dimetris.ristrettohost.CommonsSection.Constants.cartItems
 import com.dimetris.ristrettohost.InterFaces.OnCategoryClick
 import com.dimetris.ristrettohost.Models.RISAdditionalCost
 import com.dimetris.ristrettohost.Models.RISCategory
@@ -282,11 +285,25 @@ class MainScreen : AppCompatActivity(), OnCategoryClick {
 
 
         binding.ItemsCart.setOnClickListener {
-            commonFuncs.OpenCartDialog(this)
+            commonFuncs.OpenCartDialog(this,binding.ItemsCartCount)
         }
 
 
     }
+
+    override fun onResume() {
+        super.onResume()
+        commonFuncs.LanguageCheck(this)
+        commonFuncs.GetCart(this)
+        commonFuncs.CheckCart(binding.ItemsCartCount)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        commonFuncs.hideLoadingDialog()
+    }
+
+
 
     override fun OnCategoryClickListener(catid: Int) {
         itemsRecView.selectedCategory = catid

@@ -7,17 +7,28 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.graphics.drawable.ColorDrawable
+import android.util.Log
+import android.view.View
 import android.view.ViewGroup
 import android.view.Window
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dimetris.ristrettohost.CommonsSection.Constants.AppSPName
+import com.dimetris.ristrettohost.CommonsSection.Constants.FireBaseKey
 import com.dimetris.ristrettohost.CommonsSection.Constants.KeyAppLanguage
 import com.dimetris.ristrettohost.CommonsSection.Constants.cartItems
 import com.dimetris.ristrettohost.HostSection.MainScreen
+import com.dimetris.ristrettohost.Models.RISCartItem
+import com.dimetris.ristrettohost.Models.RISReadyOrder
 import com.dimetris.ristrettohost.R
 import com.dimetris.ristrettohost.RecViews.CartItemRecView
 import com.dimetris.ristrettohost.databinding.RisDialogCartBinding
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.gson.Gson
+import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 class CommonFuncs {
 
@@ -98,8 +109,34 @@ class CommonFuncs {
         return sharedPreferences.contains(key)
     }
 
+    fun CheckCart(CounterTv: TextView){
+        if (cartItems.size != 0){
+            CounterTv.visibility = View.VISIBLE
+            CounterTv.text = cartItems.size.toString()
+        }else{
+            CounterTv.visibility = View.GONE
+        }
+    }
 
-    fun OpenCartDialog(activity: Activity){
+    fun StoreCart(activity: Activity,data:ArrayList<RISCartItem>){
+        val gson = Gson()
+        val rawdata = gson.toJson(data).toString()
+        Log.e("rawdata",rawdata)
+        WriteOnSP(activity,"Cart",rawdata)
+    }
+
+    fun GetCart(activity: Activity){
+        cartItems.clear()
+        val gson = Gson()
+        val rawdata = GetFromSP(activity,"Cart")
+        if (rawdata != "NoValue"){
+            cartItems.addAll(gson.fromJson(rawdata.toString(),Array<RISCartItem>::class.java).toList())
+        }
+    }
+
+
+
+    fun OpenCartDialog(activity: Activity,CounterTv: TextView){
         hideLoadingDialog()
         cartDia = Dialog(activity)
         cartDia?.requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -108,18 +145,46 @@ class CommonFuncs {
         val view = dialogBind.root
         cartDia?.setContentView(view)
 
-        val cartItemRecView = CartItemRecView(cartItems,activity)
+        dialogBind.backBtn.setOnClickListener {
+            hideLoadingDialog()
+        }
+
+        val cartItemRecView = CartItemRecView(cartItems,activity,CounterTv)
         dialogBind.CartItemsRecycler.layoutManager = LinearLayoutManager(activity,LinearLayoutManager.VERTICAL,false)
         dialogBind.CartItemsRecycler.adapter = cartItemRecView
 
         dialogBind.SendOrder.setOnClickListener {
+            val tablenumber = dialogBind.TableCounter.text.toString()
+            if (tablenumber.isNullOrEmpty()){
+                dialogBind.TableCounter.error = "أدخل رقم الطاولة"
+                dialogBind.TableCounter.requestFocus()
+                return@setOnClickListener
+            }
 
+            val gson = Gson()
+            val time = System.currentTimeMillis()
+            val currentDate: String = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).format(Date())
+            val currentTime: String = SimpleDateFormat("HH:mm:ss", Locale.ENGLISH).format(Date())
+
+            val theOrder = RISReadyOrder(time.toString(),currentTime,currentDate,tablenumber, cartItems)
+            val rawdata = gson.toJson(theOrder).toString()
+
+
+            val database = FirebaseDatabase.getInstance(FireBaseKey)
+            val RistressoDBRef: DatabaseReference = database.getReference("RistressoDB")
+            RistressoDBRef.child(currentDate).child(time.toString()).setValue(rawdata)
+
+
+            cartItems.clear()
+            cartItemRecView.notifyDataSetChanged()
+            StoreCart(activity,cartItems)
+            CheckCart(CounterTv)
         }
 
         val window: Window = cartDia?.window!!
         window.setBackgroundDrawable(
             ColorDrawable(activity.resources
-                .getColor(R.color.tk_dialog_bg, null))
+                .getColor(R.color.ris_white, null))
         )
         window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         cartDia?.show()
