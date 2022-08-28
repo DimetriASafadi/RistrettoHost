@@ -28,18 +28,8 @@
             android:name=".HostSection.ItemScreen"
             android:exported="false"
             android:theme="@style/Theme.RistrettoHost" />
-<!--        <activity-->
-<!--            android:name=".CasherSection.CasherMainScreen"-->
-<!--            android:exported="true"-->
-<!--            android:theme="@style/Theme.RistrettoHost">-->
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-<!--        </activity>-->
         <activity
-            android:name=".SplashScreen"
+            android:name=".CasherSection.CasherMainScreen"
             android:exported="true"
             android:theme="@style/Theme.RistrettoHost">
             <intent-filter>
@@ -48,6 +38,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<!--        <activity-->
+<!--            android:name=".SplashScreen"-->
+<!--            android:exported="true"-->
+<!--            android:theme="@style/Theme.RistrettoHost">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+<!--        </activity>-->
     </application>
 
 </manifest>

@@ -181,37 +181,39 @@
 
                     <CheckBox
                         android:id="@+id/ItemIsAddCost"
-                        android:layout_width="@dimen/_25sdp"
-                        android:layout_height="@dimen/_25sdp"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
                         android:buttonTint="@color/ris_pink" />
 
 
                 </LinearLayout>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/_10sdp"
-                    android:fontFamily="@font/tajawal_medium"
-                    android:text="ملاحظات إضافية"
-                    android:textColor="@color/ris_light_green"
-                    android:textSize="@dimen/_14ssp" />
 
-                <EditText
-                    android:id="@+id/ItemNotes"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_70sdp"
-                    android:layout_marginHorizontal="@dimen/_10sdp"
-                    android:background="@drawable/ris_radius_fill_light"
-                    android:backgroundTint="@color/ris_grey_6"
-                    android:fontFamily="@font/tajawal_medium"
-                    android:gravity="start"
-                    android:hint="اكتب هنا ملاحظة ..."
-                    android:padding="@dimen/_10sdp"
-                    android:textSize="@dimen/_10ssp" />
 
 
             </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:fontFamily="@font/tajawal_medium"
+                android:text="ملاحظات إضافية"
+                android:textColor="@color/ris_light_green"
+                android:textSize="@dimen/_14ssp" />
+
+            <EditText
+                android:id="@+id/ItemNotes"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_70sdp"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:background="@drawable/ris_radius_fill_light"
+                android:backgroundTint="@color/ris_grey_6"
+                android:fontFamily="@font/tajawal_medium"
+                android:gravity="start"
+                android:hint="اكتب هنا ملاحظة ..."
+                android:padding="@dimen/_10sdp"
+                android:textSize="@dimen/_10ssp" />
 
             <TextView
                 android:id="@+id/AddItem"

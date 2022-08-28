@@ -19,29 +19,32 @@ class CasherMainScreen : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        val database = FirebaseDatabase.getInstance(Constants.FireBaseKey)
-        val RistressoDBRef: DatabaseReference = database.getReference("RistressoDB")
-        val rawdata = RistressoDBRef.child("2022-08-27").child("1661616020714").addListenerForSingleValueEvent(object :ValueEventListener{
-            override fun onDataChange(snapshot: DataSnapshot) {
-                snapshot.key
-                snapshot.value
-
-                val gson = Gson()
-                val orderDetails = gson.fromJson(snapshot.value.toString(),RISReadyOrder::class.java)
-                Log.e("OrderId",orderDetails.OrderId.toString())
-                Log.e("OrderDate",orderDetails.OrderDate.toString())
-                Log.e("OrderTime",orderDetails.OrderTime.toString())
-                Log.e("OrderTable",orderDetails.OrderTable.toString())
-                Log.e("OrderDetails",orderDetails.OrderDetails.toString())
-
-
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                Log.e("error",error.toString())
-            }
-
-        })
+//        val database = FirebaseDatabase.getInstance(Constants.FireBaseKey)
+//        val RistressoDBRef: DatabaseReference = database.getReference("RistressoDB")
+//        val rawdata = RistressoDBRef.child("2022-08-27").addListenerForSingleValueEvent(object :ValueEventListener{
+//            override fun onDataChange(snapshot: DataSnapshot) {
+//                val gson = Gson()
+//                snapshot.key
+//                snapshot.value
+//
+//                for (child in snapshot.children){
+//                    val orderDetails = gson.fromJson(child.value.toString(),RISReadyOrder::class.java)
+//                    Log.e("OrderId",orderDetails.OrderId.toString())
+//                    Log.e("OrderDate",orderDetails.OrderDate.toString())
+//                    Log.e("OrderTime",orderDetails.OrderTime.toString())
+//                    Log.e("OrderTable",orderDetails.OrderTable.toString())
+//                    Log.e("OrderDetails",orderDetails.OrderDetails.toString())
+//                }
+//
+//
+//
+//            }
+//
+//            override fun onCancelled(error: DatabaseError) {
+//                Log.e("error",error.toString())
+//            }
+//
+//        })
 
 
 

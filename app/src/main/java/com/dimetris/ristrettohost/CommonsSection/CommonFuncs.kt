@@ -172,7 +172,8 @@ class CommonFuncs {
 
             val database = FirebaseDatabase.getInstance(FireBaseKey)
             val RistressoDBRef: DatabaseReference = database.getReference("RistressoDB")
-            RistressoDBRef.child(currentDate).child(time.toString()).setValue(rawdata)
+            RistressoDBRef.child("OrdersHistory").child(currentDate).child(time.toString()).setValue(rawdata)
+            RistressoDBRef.child("FastHistory").child(currentDate).setValue(time.toString())
 
 
             cartItems.clear()
