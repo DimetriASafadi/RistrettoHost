@@ -20,6 +20,7 @@ import com.dimetris.ristrettohost.CommonsSection.Constants.cartItems
 import com.dimetris.ristrettohost.HostSection.MainScreen
 import com.dimetris.ristrettohost.Models.RISCartItem
 import com.dimetris.ristrettohost.Models.RISReadyOrder
+import com.dimetris.ristrettohost.Models.RISReadyOrderShort
 import com.dimetris.ristrettohost.R
 import com.dimetris.ristrettohost.RecViews.CartItemRecView
 import com.dimetris.ristrettohost.databinding.RisDialogCartBinding
@@ -167,13 +168,15 @@ class CommonFuncs {
             val currentTime: String = SimpleDateFormat("HH:mm:ss", Locale.ENGLISH).format(Date())
 
             val theOrder = RISReadyOrder(time.toString(),currentTime,currentDate,tablenumber, cartItems)
+            val theOrderShort = RISReadyOrderShort(time.toString(),currentTime,currentDate,tablenumber, getTotalOfOrder())
             val rawdata = gson.toJson(theOrder).toString()
+            val rawdatashort = gson.toJson(theOrderShort).toString()
 
 
             val database = FirebaseDatabase.getInstance(FireBaseKey)
             val RistressoDBRef: DatabaseReference = database.getReference("RistressoDB")
-            RistressoDBRef.child("OrdersHistory").child(currentDate).child(time.toString()).setValue(rawdata)
-            RistressoDBRef.child("FastHistory").child(currentDate).setValue(time.toString())
+            RistressoDBRef.child("OrderHistoryFull").child(currentDate).child(time.toString()).setValue(rawdata)
+            RistressoDBRef.child("OrderHistoryShort").child(currentDate).child(time.toString()).setValue(rawdatashort)
 
 
             cartItems.clear()
@@ -197,6 +200,16 @@ class CommonFuncs {
                 cartDia = null
             }
         }
+    }
+    fun getTotalOfOrder():Int{
+        var result = 0
+        for (item in cartItems){
+            result += item.ItemPrice?.CostValue!!
+            if (item.ItemIsAdditionalCost){
+                result += item.ItemAdditionalCost?.AddCostValue!!
+            }
+        }
+        return result
     }
 
 }
