@@ -19,6 +19,8 @@ class CasherMainScreen : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+
+
 //        val database = FirebaseDatabase.getInstance(Constants.FireBaseKey)
 //        val RistressoDBRef: DatabaseReference = database.getReference("RistressoDB")
 //        val rawdata = RistressoDBRef.child("2022-08-27").addListenerForSingleValueEvent(object :ValueEventListener{

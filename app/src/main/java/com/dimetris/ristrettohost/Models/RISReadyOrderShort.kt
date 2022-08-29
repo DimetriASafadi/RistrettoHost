@@ -8,6 +8,7 @@ data class RISReadyOrderShort(
     var OrderTime:String,
     var OrderDate:String,
     var OrderTable:String?,
+    var OrderStatus:Int? = 0,
     var OrderDetails:Int? = 0
 
 

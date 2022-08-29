@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/_5sdp"
+        android:padding="@dimen/_5sdp"
+        android:background="@drawable/ris_radius_fill_light"
+        android:backgroundTint="@color/ris_grey_9"
+        >
+
+
+    <TextView
+        android:id="@+id/OrderId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="طلب رقم : 544897568"
+        android:textColor="@color/ris_weak_black_2"
+        android:fontFamily="@font/tajawal_medium"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        />
+    <TextView
+        android:id="@+id/OrderTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="وقت الطلب : 11:00 مساءاً"
+        android:textColor="@color/ris_weak_black_2"
+        android:fontFamily="@font/tajawal_medium"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        />
+    <TextView
+        android:id="@+id/OrderDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="تاريخ الطلب : 2022/08/11"
+        android:textColor="@color/ris_weak_black_2"
+        android:fontFamily="@font/tajawal_medium"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        />
+    <TextView
+        android:id="@+id/Order"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="الاجمالي : 500 شيكل"
+        android:textColor="@color/ris_pink"
+        android:fontFamily="@font/tajawal_bold"
+        android:textSize="@dimen/_14ssp"
+        android:gravity="end"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            >
+            <TextView
+                android:id="@+id/OrderPending"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="@dimen/_5sdp"
+                android:gravity="center"
+                android:text="معلق"
+                />
+            <TextView
+                android:id="@+id/OrderDelete"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="@dimen/_5sdp"
+                android:gravity="center"
+                android:text="ملغي"
+                />
+            <TextView
+                android:id="@+id/OrderConfirm"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="@dimen/_5sdp"
+                android:gravity="center"
+                android:text="مكتمل"
+                />
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
