@@ -168,7 +168,7 @@ class CommonFuncs {
             val currentTime: String = SimpleDateFormat("HH:mm:ss", Locale.ENGLISH).format(Date())
 
             val theOrder = RISReadyOrder(time.toString(),currentTime,currentDate,tablenumber, cartItems)
-            val theOrderShort = RISReadyOrderShort(time.toString(),currentTime,currentDate,tablenumber, getTotalOfOrder())
+            val theOrderShort = RISReadyOrderShort(time.toString(),currentTime,currentDate,tablenumber, 0,getTotalOfOrder(cartItems))
             val rawdata = gson.toJson(theOrder).toString()
             val rawdatashort = gson.toJson(theOrderShort).toString()
 
@@ -201,14 +201,57 @@ class CommonFuncs {
             }
         }
     }
-    fun getTotalOfOrder():Int{
+    fun getTotalOfOrder(theitems:ArrayList<RISCartItem>):Int{
         var result = 0
-        for (item in cartItems){
+        for (item in theitems){
             result += item.ItemPrice?.CostValue!!
             if (item.ItemIsAdditionalCost){
                 result += item.ItemAdditionalCost?.AddCostValue!!
             }
         }
+        return result
+    }
+
+    fun CheckSelectedTime(theTime:String):String{
+        val Timearr: List<String> = theTime.split(":")
+
+        var theHour = Timearr[0].toInt()
+        var theMinute = Timearr[1].toInt()
+        var result = ""
+        var readyhour = theHour.toString()
+        var readyminute = theMinute.toString()
+
+
+        Log.e("ReturnedHour", "$readyhour,$readyminute")
+        var readyampm = "صباحاً"
+        if (theMinute.toString().length == 1){
+            readyminute = "0$theMinute"
+        }
+
+        if (theHour > 12){
+            readyhour = (theHour - 12).toString()
+            readyampm = "مساءاً"
+        }
+        if (theHour < 12){
+            readyhour = theHour.toString()
+            readyampm = "صباحاً"
+        }
+        if (theHour == 0){
+            readyhour = "12"
+            readyampm = "صباحاً"
+        }
+        if (theHour == 12){
+            readyhour = "12"
+            readyampm = "مساءاً"
+        }
+        if (readyhour.length == 1){
+            Log.e("wtfHour",readyhour.toString())
+            readyhour = "0$readyhour"
+        }
+
+        result = "$readyhour:$readyminute $readyampm"
+
+
         return result
     }
 

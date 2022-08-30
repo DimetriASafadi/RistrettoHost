@@ -1,7 +1,6 @@
 package com.dimetris.ristrettohost.RecViews
 
 import android.app.Activity
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +12,7 @@ import com.dimetris.ristrettohost.CommonsSection.Constants.cartItems
 import com.dimetris.ristrettohost.Models.RISCartItem
 import com.dimetris.ristrettohost.R
 
-class CartItemRecView(val data : ArrayList<RISCartItem>, val activity: Activity,val CounterTv: TextView) : RecyclerView.Adapter<CItemViewHolder>() {
+class CartItemRecView(val data : ArrayList<RISCartItem>, val activity: Activity,val CounterTv: TextView?) : RecyclerView.Adapter<CItemViewHolder>() {
 
     val commonFuncs = CommonFuncs()
 
@@ -41,14 +40,17 @@ class CartItemRecView(val data : ArrayList<RISCartItem>, val activity: Activity,
             holder.ItemAdditionalCost.text = "لا يوجد تكاليف إضافية"
             holder.ItemTotal.text = data[position].ItemPrice!!.CostValue!!.toString() +" شيكل"
         }
-        holder.ItemNotes.text = if (data[position].ItemNotes.isNullOrEmpty()) "لا يوجد أي ملاحظات" else data[position].ItemNotes
-        holder.ItemNotes.text = data[position]?.ItemNotes ?:""
+        holder.ItemNotes.text = data[position]?.ItemNotes ?:"لا يوجد أي ملاحظات"
         holder.ItemRemove.setOnClickListener {
             cartItems.removeAt(position)
             commonFuncs.StoreCart(activity,cartItems)
-            commonFuncs.CheckCart(CounterTv)
+            if (CounterTv != null){
+                commonFuncs.CheckCart(CounterTv)
+            }
             notifyDataSetChanged()
-
+        }
+        if (CounterTv == null){
+            holder.ItemRemove.visibility = View.INVISIBLE
         }
 
     }

@@ -267,7 +267,7 @@ class MainScreen : AppCompatActivity(), OnCategoryClick {
         risItems.add(RISItem(58,"ذا قود فاذر",price59,"الآيسكريم بنكهات الفانيليا او الشوكولاتة مع عناصر ساخنة من كيكة الماربل والموفينز والبراونيز ممزوجة بالمكسرات وقطع الشوكولاتة",risCategories[4],false,null))
         val price60 = ArrayList<RISCost>()
         price60.add(RISCost(0,"",4))
-        risItems.add(RISItem(59,"ذا قود فاذر",price60,"قطع مخصصة من البسكويت والكيك بالشوكولاتة الأمريكية الفاخرة",risCategories[4],false,null))
+        risItems.add(RISItem(59,"كوكيز/ كُب كيك",price60,"قطع مخصصة من البسكويت والكيك بالشوكولاتة الأمريكية الفاخرة",risCategories[4],false,null))
 
         categoriesRecView = CategoriesRecView(risCategories,this,this)
         binding.CategoryRecycler.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)

@@ -3,23 +3,32 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidProjects/Ristretto/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.366" />
+        <entry key="..\:/AndroidProjects/Ristretto/app/src/main/res/drawable/ic_launcher_background.xml" value="0.366" />
         <entry key="..\:/AndroidProjects/Ristretto/app/src/main/res/drawable/ris_delete_remove_trash_icon.xml" value="0.366" />
+        <entry key="..\:/AndroidProjects/Ristretto/app/src/main/res/drawable/ris_radius_fill.xml" value="0.366" />
         <entry key="..\:/AndroidProjects/Ristretto/app/src/main/res/drawable/ris_radius_fill_light.xml" value="0.3135" />
         <entry key="..\:/AndroidProjects/Ristretto/app/src/main/res/drawable/ris_radius_fill_light_green.xml" value="0.3135" />
+        <entry key="..\:/AndroidProjects/Ristretto/app/src/main/res/drawable/ris_radius_fill_top.xml" value="0.366" />
         <entry key="..\:/AndroidProjects/Ristretto/app/src/main/res/drawable/ris_radius_stroke_light_green.xml" value="0.3135" />
+        <entry key="..\:/AndroidProjects/Ristretto/app/src/main/res/drawable/ris_status_green_stroke.xml" value="0.366" />
         <entry key="..\:/AndroidProjects/Ristretto/app/src/main/res/drawable/ris_status_grey_stroke.xml" value="0.366" />
+        <entry key="..\:/AndroidProjects/Ristretto/app/src/main/res/drawable/ris_status_red_stroke.xml" value="0.366" />
         <entry key="..\:/AndroidProjects/Ristretto/app/src/main/res/font/fonts.xml" value="0.3958333333333333" />
         <entry key="..\:/AndroidProjects/Ristretto/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/AndroidProjects/Ristretto/app/src/main/res/layout/rec_item_cart_item.xml" value="0.36666666666666664" />
         <entry key="..\:/AndroidProjects/Ristretto/app/src/main/res/layout/rec_item_category.xml" value="0.365625" />
+        <entry key="..\:/AndroidProjects/Ristretto/app/src/main/res/layout/rec_item_date.xml" value="0.365625" />
         <entry key="..\:/AndroidProjects/Ristretto/app/src/main/res/layout/rec_item_home_item.xml" value="0.365625" />
         <entry key="..\:/AndroidProjects/Ristretto/app/src/main/res/layout/rec_item_price.xml" value="0.365625" />
         <entry key="..\:/AndroidProjects/Ristretto/app/src/main/res/layout/rec_item_short_order.xml" value="0.365625" />
         <entry key="..\:/AndroidProjects/Ristretto/app/src/main/res/layout/rec_item_table.xml" value="0.365625" />
         <entry key="..\:/AndroidProjects/Ristretto/app/src/main/res/layout/ris_dialog_cart.xml" value="0.365625" />
+        <entry key="..\:/AndroidProjects/Ristretto/app/src/main/res/layout/ris_dialog_order_details.xml" value="0.365625" />
         <entry key="..\:/AndroidProjects/Ristretto/app/src/main/res/layout/ris_screen_casher_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidProjects/Ristretto/app/src/main/res/layout/ris_screen_history.xml" value="0.36666666666666664" />
         <entry key="..\:/AndroidProjects/Ristretto/app/src/main/res/layout/ris_screen_item.xml" value="0.33" />
-        <entry key="..\:/AndroidProjects/Ristretto/app/src/main/res/layout/ris_screen_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidProjects/Ristretto/app/src/main/res/layout/ris_screen_main.xml" value="0.33" />
         <entry key="..\:/AndroidProjects/Ristretto/app/src/main/res/layout/ris_screen_splash.xml" value="0.36666666666666664" />
       </map>
     </option>

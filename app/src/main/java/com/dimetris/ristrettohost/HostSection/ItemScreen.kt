@@ -3,6 +3,7 @@ package com.dimetris.ristrettohost.HostSection
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dimetris.ristrettohost.CommonsSection.CommonFuncs
 import com.dimetris.ristrettohost.CommonsSection.Constants.cartItems
@@ -55,8 +56,10 @@ class ItemScreen : AppCompatActivity() {
         binding.AddItem.setOnClickListener {
             if (binding.ItemIsAddCost.isChecked){
                 cartItems.add(RISCartItem(selfData.ItemId,selfData.ItemName,pricesRecView.getSelectedItem(),selfData.ItemDescription,selfData.ItemCategory,true,selfData.ItemAdditionalCost,binding.ItemNotes.text.toString()))
+                Toast.makeText(this, "تم إضافة عنصر إلى السلة", Toast.LENGTH_SHORT).show()
             }else{
                 cartItems.add(RISCartItem(selfData.ItemId,selfData.ItemName,pricesRecView.getSelectedItem(),selfData.ItemDescription,selfData.ItemCategory,false,null,binding.ItemNotes.text.toString()))
+                Toast.makeText(this, "تم إضافة عنصر إلى السلة", Toast.LENGTH_SHORT).show()
             }
             commonFuncs.StoreCart(this,cartItems)
             commonFuncs.GetCart(this)
