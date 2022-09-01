@@ -12,6 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dimetris.ristrettohost.CommonsSection.Constants.AppSPName
 import com.dimetris.ristrettohost.CommonsSection.Constants.FireBaseKey
@@ -159,6 +160,10 @@ class CommonFuncs {
             if (tablenumber.isNullOrEmpty()){
                 dialogBind.TableCounter.error = "أدخل رقم الطاولة"
                 dialogBind.TableCounter.requestFocus()
+                return@setOnClickListener
+            }
+            if (cartItems.size == 0){
+                Toast.makeText(activity, "يجب عليك إضافة عناصر لأرسال طلب", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 

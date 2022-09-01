@@ -20,6 +20,7 @@ import java.util.*
 class CasherMainScreen : AppCompatActivity() {
 
     val commonFuncs = CommonFuncs()
+    val casherFuncs = CasherFuncs()
 
     lateinit var ordersRecView:OrdersRecView
     val risReadyOrderShort = ArrayList<RISReadyOrderShort>()
@@ -56,7 +57,7 @@ class CasherMainScreen : AppCompatActivity() {
             }
         })
 
-        TimerTask()
+//        TimerTask()
 
         binding.ItemsCart.setOnClickListener {
             startActivity(Intent(this,HistoryScreen::class.java))
@@ -69,37 +70,32 @@ class CasherMainScreen : AppCompatActivity() {
 
     }
 
-
-
-
-    fun OrdersReObserving(){
-        ShortHistoryRef.removeEventListener(datalistener)
-        val thenewTime = commonFuncs.GetFromSP(this,"currentTime").toString()
-        datalistener = ShortHistoryRef.child(thenewTime).addValueEventListener(object :ValueEventListener{
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.exists()) {
-                    getNewData(snapshot)
-                }
-            }
-            override fun onCancelled(error: DatabaseError) {
-                Log.e("error",error.toString())
-            }
-        })
-        ShortHistoryRef.addValueEventListener(datalistener)
+    override fun onDestroy() {
+        super.onDestroy()
+        casherFuncs.hideOrdersDialog()
     }
 
-    fun TimerTask(){
-        Timer().schedule(object : TimerTask() {
-            override fun run() {
-                val currentDate: String = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).format(Date())
-                if (commonFuncs.GetFromSP(this@CasherMainScreen,"currentTime") != currentDate){
-                    commonFuncs.WriteOnSP(this@CasherMainScreen,"currentTime",currentDate)
-                    OrdersReObserving()
-                }
-                TimerTask()
-            }
-        }, 8000)
-    }
+
+
+
+//    fun OrdersReObserving(){
+//        ShortHistoryRef.removeEventListener(datalistener)
+//        val thenewTime = commonFuncs.GetFromSP(this,"currentTime").toString()
+//        ShortHistoryRef.addValueEventListener(datalistener)
+//    }
+
+//    fun TimerTask(){
+//        Timer().schedule(object : TimerTask() {
+//            override fun run() {
+//                val currentDate: String = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).format(Date())
+//                if (commonFuncs.GetFromSP(this@CasherMainScreen,"currentTime") != currentDate){
+//                    commonFuncs.WriteOnSP(this@CasherMainScreen,"currentTime",currentDate)
+//                    OrdersReObserving()
+//                }
+//                TimerTask()
+//            }
+//        }, 8000)
+//    }
 
     fun getNewData(snapshot: DataSnapshot):ArrayList<RISReadyOrderShort>{
         val result = ArrayList<RISReadyOrderShort>()
@@ -109,8 +105,10 @@ class CasherMainScreen : AppCompatActivity() {
             val gson = Gson()
             val td: HashMap<String,String>? = snapshot.value as HashMap<String,String>?
             if (td != null) {
-                for (entry: Map.Entry<String, String> in td.entries) {
-                    risReadyOrderShort.add(gson.fromJson(entry.value,RISReadyOrderShort::class.java))
+                Log.e("snapshot",snapshot.toString())
+                for ((keyv,valuev) in td){
+                    Log.e("entry",valuev.toString())
+                    risReadyOrderShort.add(gson.fromJson(valuev,RISReadyOrderShort::class.java))
                 }
                 risReadyOrderShort.sortByDescending { it.OrderId }
             }

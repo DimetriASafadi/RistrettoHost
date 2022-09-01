@@ -17,6 +17,8 @@ import kotlin.collections.HashMap
 class HistoryScreen : AppCompatActivity(), OnDateClick {
 
 
+    val casherFuncs = CasherFuncs()
+
     lateinit var ShortHistoryRef: DatabaseReference
     lateinit var FulltHistoryRef: DatabaseReference
 
@@ -86,6 +88,11 @@ class HistoryScreen : AppCompatActivity(), OnDateClick {
 
 
 
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        casherFuncs.hideOrdersDialog()
     }
 
     override fun OnDateClickListener(selecteditem: String) {
