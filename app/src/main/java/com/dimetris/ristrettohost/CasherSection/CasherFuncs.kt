@@ -9,7 +9,6 @@ import android.view.Window
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dimetris.ristrettohost.CommonsSection.CommonFuncs
 import com.dimetris.ristrettohost.Models.RISReadyOrder
-import com.dimetris.ristrettohost.Models.RISReadyOrderShort
 import com.dimetris.ristrettohost.R
 import com.dimetris.ristrettohost.RecViews.CartItemRecView
 import com.dimetris.ristrettohost.databinding.RisDialogOrderDetailsBinding

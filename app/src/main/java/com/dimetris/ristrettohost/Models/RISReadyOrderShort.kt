@@ -17,7 +17,9 @@ data class RISReadyOrderShort(
     @SerializedName("OrderStatus")
     var OrderStatus:Int? = 0,
     @SerializedName("OrderTotal")
-    var OrderTotal:Int? = 0
+    var OrderTotal:Int? = 0,
+    @SerializedName("OrderDeviceId")
+    var OrderDeviceId:String? = ""
 
 
 ):Serializable

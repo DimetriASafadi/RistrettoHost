@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dimetris.ristrettohost.CommonsSection.CommonFuncs
 import com.dimetris.ristrettohost.CommonsSection.Constants
+import com.dimetris.ristrettohost.CommonsSection.Constants.ACTION_SERVICE_START
 import com.dimetris.ristrettohost.Models.RISReadyOrderShort
 import com.dimetris.ristrettohost.RecViews.OrdersRecView
 import com.dimetris.ristrettohost.databinding.RisScreenCasherMainBinding
@@ -39,6 +40,7 @@ class CasherMainScreen : AppCompatActivity() {
         val database = FirebaseDatabase.getInstance(Constants.FireBaseKey)
         ShortHistoryRef = database.getReference("RistressoDB").child("OrderHistoryShort")
         FulltHistoryRef = database.getReference("RistressoDB").child("OrderHistoryFull")
+        FulltHistoryRef = database.getReference("RistressoDB").child("OrderHistoryFull")
         ordersRecView = OrdersRecView(risReadyOrderShort,this,FulltHistoryRef,ShortHistoryRef,1)
         binding.CurrentOrdersRecycler.layoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
         binding.CurrentOrdersRecycler.adapter = ordersRecView
@@ -61,6 +63,16 @@ class CasherMainScreen : AppCompatActivity() {
 
         binding.ItemsCart.setOnClickListener {
             startActivity(Intent(this,HistoryScreen::class.java))
+        }
+
+        if (commonFuncs.GetFromSP(this,"ServiceStatus") != "ON"){
+            Intent(
+                this,
+                CasherService::class.java
+            ).apply {
+                this.action = ACTION_SERVICE_START
+                startService(this)
+            }
         }
 
 
@@ -96,6 +108,7 @@ class CasherMainScreen : AppCompatActivity() {
 //            }
 //        }, 8000)
 //    }
+
 
     fun getNewData(snapshot: DataSnapshot):ArrayList<RISReadyOrderShort>{
         val result = ArrayList<RISReadyOrderShort>()

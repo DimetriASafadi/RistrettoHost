@@ -35,9 +35,6 @@ import kotlin.collections.ArrayList
 class CommonFuncs {
 
 
-    var cartDia: Dialog? = null
-
-
     fun finishSplash(activity: Activity){
         Timer().schedule(object : TimerTask() {
             override fun run() {
@@ -137,75 +134,6 @@ class CommonFuncs {
     }
 
 
-
-    fun OpenCartDialog(activity: Activity,CounterTv: TextView){
-        hideLoadingDialog()
-        cartDia = Dialog(activity)
-        cartDia?.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        cartDia?.setCancelable(true)
-        val dialogBind = RisDialogCartBinding.inflate(activity.layoutInflater)
-        val view = dialogBind.root
-        cartDia?.setContentView(view)
-
-        dialogBind.backBtn.setOnClickListener {
-            hideLoadingDialog()
-        }
-
-        val cartItemRecView = CartItemRecView(cartItems,activity,CounterTv)
-        dialogBind.CartItemsRecycler.layoutManager = LinearLayoutManager(activity,LinearLayoutManager.VERTICAL,false)
-        dialogBind.CartItemsRecycler.adapter = cartItemRecView
-
-        dialogBind.SendOrder.setOnClickListener {
-            val tablenumber = dialogBind.TableCounter.text.toString()
-            if (tablenumber.isNullOrEmpty()){
-                dialogBind.TableCounter.error = "أدخل رقم الطاولة"
-                dialogBind.TableCounter.requestFocus()
-                return@setOnClickListener
-            }
-            if (cartItems.size == 0){
-                Toast.makeText(activity, "يجب عليك إضافة عناصر لأرسال طلب", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
-
-            val gson = Gson()
-            val time = System.currentTimeMillis()
-            val currentDate: String = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).format(Date())
-            val currentTime: String = SimpleDateFormat("HH:mm:ss", Locale.ENGLISH).format(Date())
-
-            val theOrder = RISReadyOrder(time.toString(),currentTime,currentDate,tablenumber, cartItems)
-            val theOrderShort = RISReadyOrderShort(time.toString(),currentTime,currentDate,tablenumber, 0,getTotalOfOrder(cartItems))
-            val rawdata = gson.toJson(theOrder).toString()
-            val rawdatashort = gson.toJson(theOrderShort).toString()
-
-
-            val database = FirebaseDatabase.getInstance(FireBaseKey)
-            val RistressoDBRef: DatabaseReference = database.getReference("RistressoDB")
-            RistressoDBRef.child("OrderHistoryFull").child(currentDate).child(time.toString()).setValue(rawdata)
-            RistressoDBRef.child("OrderHistoryShort").child(currentDate).child(time.toString()).setValue(rawdatashort)
-
-
-            cartItems.clear()
-            cartItemRecView.notifyDataSetChanged()
-            StoreCart(activity,cartItems)
-            CheckCart(CounterTv)
-        }
-
-        val window: Window = cartDia?.window!!
-        window.setBackgroundDrawable(
-            ColorDrawable(activity.resources
-                .getColor(R.color.ris_white, null))
-        )
-        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
-        cartDia?.show()
-    }
-    fun hideLoadingDialog(){
-        if (cartDia != null){
-            if (cartDia?.isShowing!!){
-                cartDia?.dismiss()
-                cartDia = null
-            }
-        }
-    }
     fun getTotalOfOrder(theitems:ArrayList<RISCartItem>):Int{
         var result = 0
         for (item in theitems){

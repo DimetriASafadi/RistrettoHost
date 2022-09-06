@@ -6,9 +6,12 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
 
     <application
         android:allowBackup="true"
+        android:name=".MyApplication"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
@@ -17,45 +20,26 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RistrettoHost"
         tools:targetApi="31">
+        <service
+            android:name=".CasherSection.CasherService"
+            android:enabled="true"
+            android:exported="false"/>
 
         <activity
             android:name=".CasherSection.HistoryScreen"
-            android:exported="false" />
-
-<!--         <activity -->
-<!--         android:name=".CasherSection.CasherMainScreen" -->
-<!--         android:exported="false" /> -->
-
-
+            android:exported="false" /> <!-- <activity -->
+        <!-- android:name=".CasherSection.CasherMainScreen" -->
+        <!-- android:exported="false" /> -->
         <activity
             android:name=".CasherSection.CasherMainScreen"
             android:exported="true"
             android:theme="@style/Theme.RistrettoHost">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<!--        <activity-->
-<!--            android:name=".HostSection.ItemScreen"-->
-<!--            android:exported="false"-->
-<!--            android:theme="@style/Theme.RistrettoHost" />-->
-
-<!--        <activity android:name=".HostSection.MainScreen"-->
-<!--            android:exported="false"-->
-<!--            android:theme="@style/Theme.RistrettoHost" />-->
-
-<!--    <activity-->
-<!--            android:name=".SplashScreen"-->
-<!--            android:exported="true"-->
-<!--            android:theme="@style/Theme.RistrettoHost">-->
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-<!--        </activity>-->
-
     </application>
 
 </manifest>

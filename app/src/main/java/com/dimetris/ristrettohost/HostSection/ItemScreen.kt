@@ -16,6 +16,7 @@ import com.dimetris.ristrettohost.databinding.RisScreenItemBinding
 class ItemScreen : AppCompatActivity() {
 
     val commonFuncs = CommonFuncs()
+    val hostOrderCart = HostOrderCart()
 
     lateinit var selfData:RISItem
 
@@ -67,7 +68,7 @@ class ItemScreen : AppCompatActivity() {
         }
 
         binding.ItemsCart.setOnClickListener {
-            commonFuncs.OpenCartDialog(this,binding.ItemsCartCount)
+            hostOrderCart.OpenCartDialog(this,binding.ItemsCartCount)
         }
 
     }
@@ -80,6 +81,6 @@ class ItemScreen : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        commonFuncs.hideLoadingDialog()
+        hostOrderCart.hideLoadingDialog()
     }
 }

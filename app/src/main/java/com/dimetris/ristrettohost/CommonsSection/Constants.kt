@@ -9,4 +9,10 @@ object Constants {
     const val FireBaseKey = "https://ristresso-default-rtdb.firebaseio.com/"
     val cartItems = ArrayList<RISCartItem>()
 
+
+    const val CasherNotsChannel = "1441"
+
+    const val ACTION_SERVICE_START = "R_ACTION_SERVICE_START"
+    const val ACTION_SERVICE_STOP = "R_ACTION_SERVICE_STOP"
+
 }

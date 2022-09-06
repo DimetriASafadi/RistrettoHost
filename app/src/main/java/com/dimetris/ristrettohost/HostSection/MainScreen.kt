@@ -21,6 +21,7 @@ import com.dimetris.ristrettohost.databinding.RisScreenMainBinding
 class MainScreen : AppCompatActivity(), OnCategoryClick {
 
     val commonFuncs = CommonFuncs()
+    val hostOrderCart = HostOrderCart()
 
     lateinit var categoriesRecView: CategoriesRecView
     val risCategories = ArrayList<RISCategory>()
@@ -285,7 +286,7 @@ class MainScreen : AppCompatActivity(), OnCategoryClick {
 
 
         binding.ItemsCart.setOnClickListener {
-            commonFuncs.OpenCartDialog(this,binding.ItemsCartCount)
+            hostOrderCart.OpenCartDialog(this,binding.ItemsCartCount)
         }
 
 
@@ -300,7 +301,7 @@ class MainScreen : AppCompatActivity(), OnCategoryClick {
 
     override fun onDestroy() {
         super.onDestroy()
-        commonFuncs.hideLoadingDialog()
+        hostOrderCart.hideLoadingDialog()
     }
 
 
