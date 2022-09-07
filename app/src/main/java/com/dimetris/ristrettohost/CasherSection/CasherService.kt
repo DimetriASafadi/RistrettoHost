@@ -15,11 +15,11 @@ import com.dimetris.ristrettohost.CommonsSection.Constants
 import com.dimetris.ristrettohost.CommonsSection.Constants.ACTION_SERVICE_START
 import com.dimetris.ristrettohost.CommonsSection.Constants.ACTION_SERVICE_STOP
 import com.dimetris.ristrettohost.CommonsSection.Constants.CasherNotsChannel
+import com.dimetris.ristrettohost.HostSection.MainScreen
 import com.dimetris.ristrettohost.R
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class CasherService : Service() {
@@ -27,6 +27,13 @@ class CasherService : Service() {
 
 
     val commonFuncs = CommonFuncs()
+
+
+    lateinit var ShortHistoryRef:DatabaseReference
+    lateinit var tempolistener:ValueEventListener
+
+    var currentDate = ""
+    var notificationId = 1
 
 
     companion object{
@@ -39,26 +46,49 @@ class CasherService : Service() {
 
     override fun onCreate() {
         super.onCreate()
+        currentDate = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).format(Date())
         Log.e("ServiceIssue","Service has Started")
         commonFuncs.WriteOnSP(this,"ServiceStatus","ON")
         setInitialValues()
         val database = FirebaseDatabase.getInstance(Constants.FireBaseKey)
-        val ShortHistoryRef = database.getReference("RistressoDB").child("OrderHistoryShort")
 
-        ShortHistoryRef.child("2022-08-31").addValueEventListener(object : ValueEventListener {
+//        ShortHistoryRef = database.getReference("RistressoDB").child("OrderHistoryShort")
+        ShortHistoryRef = database.getReference("RistressoDB").child("LastHostOrder")
+        tempolistener = ShortHistoryRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 Log.e("onDataChange","yes")
-                if (snapshot.exists()) {
-                    updateNotification("آخر طلب لديك","تفاصيل الطلب هنا تفاصيل")
-                    Log.e("snapshot.exists()","no notification")
-                }
+                    if (snapshot.exists()) {
+                        updateNotification("آخر طلب لديك","تفاصيل الطلب هنا تفاصيل")
+                        Log.e("snapshot.exists()","no notification")
+                    }
+
             }
             override fun onCancelled(error: DatabaseError) {
                 Toast.makeText(this@CasherService, "حصل خطأ أثناء تحليل البيانات", Toast.LENGTH_SHORT).show()
                 Log.e("error",error.toString())
             }
         })
+        DateCheck()
 
+
+
+
+
+    }
+
+    fun DateCheck(){
+        Timer().schedule(object : TimerTask() {
+            override fun run() {
+                val updatedDate = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).format(Date())
+                if (currentDate != updatedDate){
+                    started.postValue(false)
+                    stopForegroundService()
+                    Log.e("stopForegroundService","yes")
+                }else{
+                    DateCheck()
+                }
+            }
+        }, 10000)
     }
 
     override fun onBind(intent: Intent?): IBinder? {
@@ -66,13 +96,13 @@ class CasherService : Service() {
     }
 
 
-    override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
-        intent.let {
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        intent?.let {
             when(it.action){
                 ACTION_SERVICE_START ->{
                     Log.e("ACTION_SERVICE_START","Service has Started")
                     started.postValue(true)
-                    startForeground(1441, getMyActivityNotification("اشعارات طلبات ريستريسو","لقد بدأت للتو جلسة اشعارات للطلبات"))
+                    startForeground(9999, getMyActivityNotification("اشعارات الطلبات","تلقي اشعارات طلبات الزبائن قيد العمل , سوف تتلقى اشعار لأي طلب يصل في اي وقت من تطبيق المضيف"))
                 }
                 ACTION_SERVICE_STOP ->{
                     started.postValue(false)
@@ -88,13 +118,13 @@ class CasherService : Service() {
 
 
     private fun stopForegroundService(){
-        (getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager).cancel(
-            1441
-        )
+        (getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager).cancelAll()
+        ShortHistoryRef.child(currentDate).removeEventListener(tempolistener)
         stopSelf()
     }
 
     override fun onDestroy() {
+        Log.e("onDestroy","Service has been destroyed")
         commonFuncs.WriteOnSP(this,"ServiceStatus","OFF")
         super.onDestroy()
     }
@@ -118,7 +148,7 @@ class CasherService : Service() {
         return NotificationCompat.Builder(applicationContext,CasherNotsChannel)
             .setContentTitle(contentTitle)
             .setContentText(contentText)
-            .setSmallIcon(R.mipmap.ic_launcher)
+            .setSmallIcon(R.drawable.ris_ristresso_logo)
             .setContentIntent(pendingIntent)
             .setOngoing(false)
             .build()
@@ -126,6 +156,7 @@ class CasherService : Service() {
     private fun updateNotification(contentTitle:String,contentText:String) {
         val notification = getMyActivityNotification(contentTitle,contentText)
         val mNotificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
-        mNotificationManager.notify(1441, notification)
+        notificationId++
+        mNotificationManager.notify(notificationId, notification)
     }
 }

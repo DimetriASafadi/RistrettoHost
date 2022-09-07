@@ -40,13 +40,9 @@ class CasherMainScreen : AppCompatActivity() {
         val database = FirebaseDatabase.getInstance(Constants.FireBaseKey)
         ShortHistoryRef = database.getReference("RistressoDB").child("OrderHistoryShort")
         FulltHistoryRef = database.getReference("RistressoDB").child("OrderHistoryFull")
-        FulltHistoryRef = database.getReference("RistressoDB").child("OrderHistoryFull")
         ordersRecView = OrdersRecView(risReadyOrderShort,this,FulltHistoryRef,ShortHistoryRef,1)
         binding.CurrentOrdersRecycler.layoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
         binding.CurrentOrdersRecycler.adapter = ordersRecView
-
-
-
         datalistener = ShortHistoryRef.child(SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).format(Date())).addValueEventListener(object :ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
@@ -58,13 +54,9 @@ class CasherMainScreen : AppCompatActivity() {
                 Log.e("error",error.toString())
             }
         })
-
-//        TimerTask()
-
         binding.ItemsCart.setOnClickListener {
             startActivity(Intent(this,HistoryScreen::class.java))
         }
-
         if (commonFuncs.GetFromSP(this,"ServiceStatus") != "ON"){
             Intent(
                 this,
@@ -74,42 +66,11 @@ class CasherMainScreen : AppCompatActivity() {
                 startService(this)
             }
         }
-
-
-
-
-
-
     }
-
     override fun onDestroy() {
         super.onDestroy()
         casherFuncs.hideOrdersDialog()
     }
-
-
-
-
-//    fun OrdersReObserving(){
-//        ShortHistoryRef.removeEventListener(datalistener)
-//        val thenewTime = commonFuncs.GetFromSP(this,"currentTime").toString()
-//        ShortHistoryRef.addValueEventListener(datalistener)
-//    }
-
-//    fun TimerTask(){
-//        Timer().schedule(object : TimerTask() {
-//            override fun run() {
-//                val currentDate: String = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).format(Date())
-//                if (commonFuncs.GetFromSP(this@CasherMainScreen,"currentTime") != currentDate){
-//                    commonFuncs.WriteOnSP(this@CasherMainScreen,"currentTime",currentDate)
-//                    OrdersReObserving()
-//                }
-//                TimerTask()
-//            }
-//        }, 8000)
-//    }
-
-
     fun getNewData(snapshot: DataSnapshot):ArrayList<RISReadyOrderShort>{
         val result = ArrayList<RISReadyOrderShort>()
         try {
