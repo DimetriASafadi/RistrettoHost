@@ -27,10 +27,13 @@
             android:name=".CasherSection.CasherService"
             android:enabled="true"
             android:exported="false" />
-
         <activity
             android:name=".CasherSection.HistoryScreen"
-            android:exported="false" /> <!-- <activity -->
+            android:exported="false" />
+        <activity
+            android:name=".HostSection.ItemScreen"
+            android:exported="false" />
+        <!-- <activity -->
         <!-- android:name=".CasherSection.CasherMainScreen" -->
         <!-- android:exported="false" /> -->
         <activity
@@ -39,7 +42,6 @@
             android:theme="@style/Theme.RistrettoHost">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

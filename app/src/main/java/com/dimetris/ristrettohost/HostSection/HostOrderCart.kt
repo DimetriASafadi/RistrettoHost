@@ -67,7 +67,7 @@ class HostOrderCart {
             val androidId = Settings.Secure.getString(activity.contentResolver,
                 Settings.Secure.ANDROID_ID)
 
-            val theOrder = RISReadyOrder(time.toString(),currentTime,currentDate,tablenumber, Constants.cartItems)
+            val theOrder = RISReadyOrder(time.toString(),currentTime,currentDate,tablenumber,androidId, Constants.cartItems)
             val theOrderShort = RISReadyOrderShort(time.toString(),currentTime,currentDate,tablenumber, 0,commonFuncs.getTotalOfOrder(
                 Constants.cartItems
             ),androidId)
@@ -77,8 +77,11 @@ class HostOrderCart {
 
             val database = FirebaseDatabase.getInstance(Constants.FireBaseKey)
             val RistressoDBRef: DatabaseReference = database.getReference("RistressoDB")
+            val LastOrderRef = database.getReference("RistressoDB").child("LastHostOrder")
+
             RistressoDBRef.child("OrderHistoryFull").child(currentDate).child(time.toString()).setValue(rawdata)
             RistressoDBRef.child("OrderHistoryShort").child(currentDate).child(time.toString()).setValue(rawdatashort)
+            LastOrderRef.setValue(rawdatashort)
 
 
             Constants.cartItems.clear()

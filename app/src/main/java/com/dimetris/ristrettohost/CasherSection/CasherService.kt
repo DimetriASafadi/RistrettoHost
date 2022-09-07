@@ -61,7 +61,7 @@ class CasherService : Service() {
                 Log.e("onDataChange","yes")
                     if (snapshot.exists()) {
                         val readyData = gson.fromJson(snapshot.value.toString(), RISReadyOrderShort::class.java)
-                        updateNotification("لديك طلب جديد "+readyData.OrderTime+ " طاولة رقم "+readyData.OrderTable,"اضغط لعرض تفاصيل الطلب",snapshot.value.toString())
+                        updateNotification("لديك طلب جديد "+readyData.OrderTime+ " طاولة"+"("+readyData.OrderTable+")","اضغط لعرض تفاصيل الطلب",snapshot.value.toString())
                         Log.e("snapshot.exists()","no notification")
                     }
 
@@ -136,7 +136,8 @@ class CasherService : Service() {
 
     private fun getMyActivityNotification(contentTitle: String,contentText:String,contentExtras:String): Notification? {
 
-        val notificationIntent = Intent(applicationContext, CasherMainScreen::class.java)
+        val notificationIntent = Intent(applicationContext, NotificationScreen::class.java)
+        val notificationIntentEmpty = Intent(applicationContext, CasherMainScreen::class.java)
 //        val pendingIntent = PendingIntent.getActivity(
 //            this,
 //            0, notificationIntent, 0
@@ -147,18 +148,36 @@ class CasherService : Service() {
 
         var pendingIntent: PendingIntent? = null
         pendingIntent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            PendingIntent.getActivity(applicationContext, 0, notificationIntent, PendingIntent.FLAG_MUTABLE)
+            if (contentExtras.isNullOrEmpty()){
+                PendingIntent.getActivity(applicationContext, 0, notificationIntentEmpty, PendingIntent.FLAG_MUTABLE)
+            }else{
+                PendingIntent.getActivity(applicationContext, 0, notificationIntent, PendingIntent.FLAG_MUTABLE)
+            }
         } else {
-            PendingIntent.getActivity(applicationContext, 0, notificationIntent, 0)
+            if (contentExtras.isNullOrEmpty()){
+                PendingIntent.getActivity(applicationContext, 0, notificationIntentEmpty, 0)
+            }else{
+                PendingIntent.getActivity(applicationContext, 0, notificationIntent, 0)
+            }
         }
 
-        return NotificationCompat.Builder(applicationContext,CasherNotsChannel)
-            .setContentTitle(contentTitle)
-            .setContentText(contentText)
-            .setSmallIcon(R.drawable.ris_ristresso_logo)
-            .setContentIntent(pendingIntent)
-            .setOngoing(false)
-            .build()
+        if (contentExtras.isNullOrEmpty()){
+            return NotificationCompat.Builder(applicationContext,CasherNotsChannel)
+                .setContentTitle(contentTitle)
+                .setContentText(contentText)
+                .setSmallIcon(R.drawable.ris_ristresso_logo)
+                .setOngoing(false)
+                .build()
+        }else{
+            return NotificationCompat.Builder(applicationContext,CasherNotsChannel)
+                .setContentTitle(contentTitle)
+                .setContentText(contentText)
+                .setSmallIcon(R.drawable.ris_ristresso_logo)
+                .setContentIntent(pendingIntent)
+                .setOngoing(false)
+                .build()
+        }
+
     }
     private fun updateNotification(contentTitle:String,contentText:String,contentExtras:String) {
         val notification = getMyActivityNotification(contentTitle,contentText,contentExtras)
