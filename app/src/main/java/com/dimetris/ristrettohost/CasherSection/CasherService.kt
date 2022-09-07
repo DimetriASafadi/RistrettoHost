@@ -16,8 +16,10 @@ import com.dimetris.ristrettohost.CommonsSection.Constants.ACTION_SERVICE_START
 import com.dimetris.ristrettohost.CommonsSection.Constants.ACTION_SERVICE_STOP
 import com.dimetris.ristrettohost.CommonsSection.Constants.CasherNotsChannel
 import com.dimetris.ristrettohost.HostSection.MainScreen
+import com.dimetris.ristrettohost.Models.RISReadyOrderShort
 import com.dimetris.ristrettohost.R
 import com.google.firebase.database.*
+import com.google.gson.Gson
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -29,7 +31,7 @@ class CasherService : Service() {
     val commonFuncs = CommonFuncs()
 
 
-    lateinit var ShortHistoryRef:DatabaseReference
+    lateinit var LastOrderRef:DatabaseReference
     lateinit var tempolistener:ValueEventListener
 
     var currentDate = ""
@@ -50,15 +52,16 @@ class CasherService : Service() {
         Log.e("ServiceIssue","Service has Started")
         commonFuncs.WriteOnSP(this,"ServiceStatus","ON")
         setInitialValues()
+        val gson = Gson()
         val database = FirebaseDatabase.getInstance(Constants.FireBaseKey)
 
-//        ShortHistoryRef = database.getReference("RistressoDB").child("OrderHistoryShort")
-        ShortHistoryRef = database.getReference("RistressoDB").child("LastHostOrder")
-        tempolistener = ShortHistoryRef.addValueEventListener(object : ValueEventListener {
+        LastOrderRef = database.getReference("RistressoDB").child("LastHostOrder")
+        tempolistener = LastOrderRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 Log.e("onDataChange","yes")
                     if (snapshot.exists()) {
-                        updateNotification("آخر طلب لديك","تفاصيل الطلب هنا تفاصيل")
+                        val readyData = gson.fromJson(snapshot.value.toString(), RISReadyOrderShort::class.java)
+                        updateNotification("لديك طلب جديد "+readyData.OrderTime+ " طاولة رقم "+readyData.OrderTable,"اضغط لعرض تفاصيل الطلب",snapshot.value.toString())
                         Log.e("snapshot.exists()","no notification")
                     }
 
@@ -102,7 +105,7 @@ class CasherService : Service() {
                 ACTION_SERVICE_START ->{
                     Log.e("ACTION_SERVICE_START","Service has Started")
                     started.postValue(true)
-                    startForeground(9999, getMyActivityNotification("اشعارات الطلبات","تلقي اشعارات طلبات الزبائن قيد العمل , سوف تتلقى اشعار لأي طلب يصل في اي وقت من تطبيق المضيف"))
+                    startForeground(9999, getMyActivityNotification("اشعارات الطلبات","تلقي اشعارات طلبات الزبائن قيد العمل , سوف تتلقى اشعار لأي طلب يصل في اي وقت من تطبيق المضيف",""))
                 }
                 ACTION_SERVICE_STOP ->{
                     started.postValue(false)
@@ -119,7 +122,7 @@ class CasherService : Service() {
 
     private fun stopForegroundService(){
         (getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager).cancelAll()
-        ShortHistoryRef.child(currentDate).removeEventListener(tempolistener)
+        LastOrderRef.removeEventListener(tempolistener)
         stopSelf()
     }
 
@@ -131,13 +134,17 @@ class CasherService : Service() {
 
 
 
-    private fun getMyActivityNotification(contentTitle: String,contentText:String): Notification? {
+    private fun getMyActivityNotification(contentTitle: String,contentText:String,contentExtras:String): Notification? {
 
         val notificationIntent = Intent(applicationContext, CasherMainScreen::class.java)
 //        val pendingIntent = PendingIntent.getActivity(
 //            this,
 //            0, notificationIntent, 0
 //        )
+        if (!contentExtras.isNullOrEmpty()){
+            notificationIntent.putExtra("rawdata",contentExtras)
+        }
+
         var pendingIntent: PendingIntent? = null
         pendingIntent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             PendingIntent.getActivity(applicationContext, 0, notificationIntent, PendingIntent.FLAG_MUTABLE)
@@ -153,8 +160,8 @@ class CasherService : Service() {
             .setOngoing(false)
             .build()
     }
-    private fun updateNotification(contentTitle:String,contentText:String) {
-        val notification = getMyActivityNotification(contentTitle,contentText)
+    private fun updateNotification(contentTitle:String,contentText:String,contentExtras:String) {
+        val notification = getMyActivityNotification(contentTitle,contentText,contentExtras)
         val mNotificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
         notificationId++
         mNotificationManager.notify(notificationId, notification)
