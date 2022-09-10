@@ -96,7 +96,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/_10sdp"
                         android:fontFamily="@font/tajawal_medium"
-                        android:text="طلب رقم : 544897568"
+                        android:text="جاري التحميل"
                         android:textColor="@color/ris_weak_black_2"
                         android:textSize="@dimen/_12ssp" />
 
@@ -106,7 +106,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/_10sdp"
                         android:fontFamily="@font/tajawal_medium"
-                        android:text="وقت الطلب : 11:00 مساءاً"
+                        android:text="وقت الطلب : جاري التحميل ..."
                         android:textColor="@color/ris_weak_black_2"
                         android:textSize="@dimen/_12ssp" />
 
@@ -116,7 +116,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/_10sdp"
                         android:fontFamily="@font/tajawal_medium"
-                        android:text="تاريخ الطلب : 2022/08/11"
+                        android:text="تاريخ الطلب : جاري التحميل ..."
                         android:textColor="@color/ris_weak_black_2"
                         android:textSize="@dimen/_12ssp"
 
@@ -137,7 +137,7 @@
                             android:layout_weight="1"
                             android:fontFamily="@font/tajawal_bold"
                             android:gravity="center"
-                            android:text="الاجمالي : 500 شيكل"
+                            android:text="جاري تحميل البيانات ..."
                             android:textColor="@color/ris_pink"
                             android:textSize="@dimen/_14ssp" />
 
