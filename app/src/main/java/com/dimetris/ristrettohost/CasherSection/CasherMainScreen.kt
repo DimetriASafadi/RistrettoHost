@@ -28,6 +28,9 @@ class CasherMainScreen : AppCompatActivity() {
 
     lateinit var ShortHistoryRef:DatabaseReference
     lateinit var FulltHistoryRef:DatabaseReference
+    lateinit var HostNotificationsRef:DatabaseReference
+    lateinit var HostNotHostorysRef:DatabaseReference
+
     private lateinit var datalistener: ValueEventListener
 
     lateinit var binding:RisScreenCasherMainBinding
@@ -40,7 +43,9 @@ class CasherMainScreen : AppCompatActivity() {
         val database = FirebaseDatabase.getInstance(Constants.FireBaseKey)
         ShortHistoryRef = database.getReference("RistressoDB").child("OrderHistoryShort")
         FulltHistoryRef = database.getReference("RistressoDB").child("OrderHistoryFull")
-        ordersRecView = OrdersRecView(risReadyOrderShort,this,FulltHistoryRef,ShortHistoryRef,1)
+        HostNotificationsRef = database.getReference("RistressoDB").child("HostNotifications")
+        HostNotHostorysRef = database.getReference("RistressoDB").child("HostNotificationsHistory")
+        ordersRecView = OrdersRecView(risReadyOrderShort,this,FulltHistoryRef,ShortHistoryRef,HostNotificationsRef,HostNotHostorysRef,1)
         binding.CurrentOrdersRecycler.layoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
         binding.CurrentOrdersRecycler.adapter = ordersRecView
         datalistener = ShortHistoryRef.child(SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).format(Date())).addValueEventListener(object :ValueEventListener{

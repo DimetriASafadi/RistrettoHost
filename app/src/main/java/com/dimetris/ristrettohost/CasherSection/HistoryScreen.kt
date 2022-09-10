@@ -21,6 +21,9 @@ class HistoryScreen : AppCompatActivity(), OnDateClick {
 
     lateinit var ShortHistoryRef: DatabaseReference
     lateinit var FulltHistoryRef: DatabaseReference
+    lateinit var HostNotificationsRef: DatabaseReference
+    lateinit var HostNotHostorysRef: DatabaseReference
+
 
     lateinit var dateRecView:DateRecView
     val RisDates = ArrayList<String>()
@@ -40,12 +43,15 @@ class HistoryScreen : AppCompatActivity(), OnDateClick {
         val database = FirebaseDatabase.getInstance(Constants.FireBaseKey)
         ShortHistoryRef = database.getReference("RistressoDB").child("OrderHistoryShort")
         FulltHistoryRef = database.getReference("RistressoDB").child("OrderHistoryFull")
+        HostNotificationsRef = database.getReference("RistressoDB").child("HostNotifications")
+        HostNotHostorysRef = database.getReference("RistressoDB").child("HostNotificationsHistory")
+
 
         dateRecView = DateRecView(RisDates,this,this)
         binding.OrdersDateRecycler.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
         binding.OrdersDateRecycler.adapter = dateRecView
 
-        ordersRecView = OrdersRecView(risReadyOrderShort,this,FulltHistoryRef,ShortHistoryRef,0)
+        ordersRecView = OrdersRecView(risReadyOrderShort,this,FulltHistoryRef,ShortHistoryRef,HostNotificationsRef,HostNotHostorysRef,0)
         binding.OrdersRecycler.layoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
         binding.OrdersRecycler.adapter = ordersRecView
 

@@ -20,6 +20,7 @@
         <entry key="..\:/AndroidProjects/Ristretto/app/src/main/res/layout/rec_item_category.xml" value="0.365625" />
         <entry key="..\:/AndroidProjects/Ristretto/app/src/main/res/layout/rec_item_date.xml" value="0.365625" />
         <entry key="..\:/AndroidProjects/Ristretto/app/src/main/res/layout/rec_item_home_item.xml" value="0.365625" />
+        <entry key="..\:/AndroidProjects/Ristretto/app/src/main/res/layout/rec_item_host_notification.xml" value="0.365625" />
         <entry key="..\:/AndroidProjects/Ristretto/app/src/main/res/layout/rec_item_price.xml" value="0.365625" />
         <entry key="..\:/AndroidProjects/Ristretto/app/src/main/res/layout/rec_item_short_order.xml" value="0.365625" />
         <entry key="..\:/AndroidProjects/Ristretto/app/src/main/res/layout/rec_item_table.xml" value="0.365625" />
@@ -27,6 +28,7 @@
         <entry key="..\:/AndroidProjects/Ristretto/app/src/main/res/layout/ris_dialog_order_details.xml" value="0.365625" />
         <entry key="..\:/AndroidProjects/Ristretto/app/src/main/res/layout/ris_screen_casher_main.xml" value="0.36666666666666664" />
         <entry key="..\:/AndroidProjects/Ristretto/app/src/main/res/layout/ris_screen_history.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidProjects/Ristretto/app/src/main/res/layout/ris_screen_host_notifications.xml" value="0.36666666666666664" />
         <entry key="..\:/AndroidProjects/Ristretto/app/src/main/res/layout/ris_screen_item.xml" value="0.33" />
         <entry key="..\:/AndroidProjects/Ristretto/app/src/main/res/layout/ris_screen_main.xml" value="0.33" />
         <entry key="..\:/AndroidProjects/Ristretto/app/src/main/res/layout/ris_screen_notification.xml" value="0.36666666666666664" />

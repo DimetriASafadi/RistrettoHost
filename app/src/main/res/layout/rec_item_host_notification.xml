@@ -1,0 +1,80 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="@dimen/_10sdp"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:id="@+id/WholeNoti"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/NotStatus"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:src="@color/ris_red_2"
+            android:padding="@dimen/_8sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:id="@+id/NotTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="2:12 مساءاً"
+            android:fontFamily="@font/tajawal_medium"
+            android:textColor="@color/ris_grey_7"
+            android:textSize="@dimen/_10ssp"
+            android:layout_marginHorizontal="@dimen/_5sdp"
+            android:gravity="left"
+            />
+
+        <TextView
+            android:id="@+id/NotTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="عيادة سمايل قبل حجز خدمة تنظيف الأسنان و....."
+            android:fontFamily="@font/tajawal_bold"
+            android:textColor="@color/ris_weak_black_2"
+            android:textSize="@dimen/_10ssp"
+            android:layout_marginHorizontal="@dimen/_5sdp"
+            />
+        <TextView
+            android:id="@+id/NotDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="qwdqwfqfgq qgq gqd qwd qwd qwfg qfg qwgqwe qw tqwt wdfas dqw dqwd"
+            android:fontFamily="@font/tajawal_medium"
+            android:textColor="@color/ris_weak_black_3"
+            android:textSize="@dimen/_10ssp"
+            android:layout_marginHorizontal="@dimen/_5sdp"
+            />
+
+    </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:alpha="0.5"
+        android:background="@color/ris_grey"
+        />
+
+</LinearLayout>

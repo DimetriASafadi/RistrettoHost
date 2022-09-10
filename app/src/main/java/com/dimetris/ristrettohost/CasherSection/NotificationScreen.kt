@@ -51,7 +51,7 @@ class NotificationScreen : AppCompatActivity() {
                     binding.OrderId.text = "رقم الطلب : "+selfData.OrderId
                     binding.OrderTotal.text = "اجمالي : "+commonFuncs.getTotalOfOrder(selfData.OrderDetails)+" شيكل"
                     binding.OrderDate.text = "تاريخ الطلب : "+selfData.OrderDate
-                    binding.OrderTime.text = "وقت الطلب : "+selfData.OrderTime
+                    binding.OrderTime.text = "وقت الطلب : "+commonFuncs.CheckSelectedTime(selfData.OrderTime)
                     val cartItemRecView = CartItemRecView(selfData.OrderDetails,this@NotificationScreen,null)
                     binding.OrderItemsRecycler.layoutManager = LinearLayoutManager(this@NotificationScreen,
                         LinearLayoutManager.VERTICAL,false)

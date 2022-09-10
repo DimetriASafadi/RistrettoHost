@@ -20,6 +20,9 @@
         android:theme="@style/Theme.RistrettoHost"
         tools:targetApi="31">
         <activity
+            android:name=".HostSection.HostNotificationsScreen"
+            android:exported="false" />
+        <activity
             android:name=".CasherSection.NotificationScreen"
             android:exported="false" />
 
@@ -27,6 +30,11 @@
             android:name=".CasherSection.CasherService"
             android:enabled="true"
             android:exported="false" />
+        <service
+            android:name=".HostSection.HostService"
+            android:enabled="true"
+            android:exported="false" />
+
         <activity
             android:name=".CasherSection.HistoryScreen"
             android:exported="false" />

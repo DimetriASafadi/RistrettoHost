@@ -1,12 +1,16 @@
 package com.dimetris.ristrettohost.HostSection
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.dimetris.ristrettohost.CasherSection.CasherService
 import com.dimetris.ristrettohost.CommonsSection.CommonFuncs
+import com.dimetris.ristrettohost.CommonsSection.Constants
 import com.dimetris.ristrettohost.CommonsSection.Constants.cartItems
 import com.dimetris.ristrettohost.InterFaces.OnCategoryClick
 import com.dimetris.ristrettohost.Models.RISAdditionalCost
@@ -287,6 +291,18 @@ class MainScreen : AppCompatActivity(), OnCategoryClick {
 
         binding.ItemsCart.setOnClickListener {
             hostOrderCart.OpenCartDialog(this,binding.ItemsCartCount)
+        }
+
+        if (commonFuncs.GetFromSP(this,"ServiceStatus") != "ON"){
+            Intent(
+                this,
+                HostService::class.java
+            ).apply {
+                this.action = Constants.H_ACTION_SERVICE_START
+                startService(this)
+                Log.e("ServiceStatus","Started")
+
+            }
         }
 
 

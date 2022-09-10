@@ -48,7 +48,7 @@ class CasherService : Service() {
 
     override fun onCreate() {
         super.onCreate()
-        currentDate = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).format(Date())
+//        currentDate = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).format(Date())
         Log.e("ServiceIssue","Service has Started")
         commonFuncs.WriteOnSP(this,"ServiceStatus","ON")
         setInitialValues()
@@ -61,7 +61,7 @@ class CasherService : Service() {
                 Log.e("onDataChange","yes")
                     if (snapshot.exists()) {
                         val readyData = gson.fromJson(snapshot.value.toString(), RISReadyOrderShort::class.java)
-                        updateNotification("لديك طلب جديد "+readyData.OrderTime+ " طاولة"+"("+readyData.OrderTable+")","اضغط لعرض تفاصيل الطلب",snapshot.value.toString())
+                        updateNotification("لديك طلب جديد "+commonFuncs.CheckSelectedTime(readyData.OrderTime)+ " - طاولة "+"("+readyData.OrderTable+")","اضغط لعرض تفاصيل الطلب",snapshot.value.toString())
                         Log.e("snapshot.exists()","no notification")
                     }
 
@@ -71,7 +71,7 @@ class CasherService : Service() {
                 Log.e("error",error.toString())
             }
         })
-        DateCheck()
+//        DateCheck()
 
 
 
@@ -79,20 +79,20 @@ class CasherService : Service() {
 
     }
 
-    fun DateCheck(){
-        Timer().schedule(object : TimerTask() {
-            override fun run() {
-                val updatedDate = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).format(Date())
-                if (currentDate != updatedDate){
-                    started.postValue(false)
-                    stopForegroundService()
-                    Log.e("stopForegroundService","yes")
-                }else{
-                    DateCheck()
-                }
-            }
-        }, 10000)
-    }
+//    fun DateCheck(){
+//        Timer().schedule(object : TimerTask() {
+//            override fun run() {
+//                val updatedDate = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).format(Date())
+//                if (currentDate != updatedDate){
+//                    started.postValue(false)
+//                    stopForegroundService()
+//                    Log.e("stopForegroundService","yes")
+//                }else{
+//                    DateCheck()
+//                }
+//            }
+//        }, 10000)
+//    }
 
     override fun onBind(intent: Intent?): IBinder? {
         return null

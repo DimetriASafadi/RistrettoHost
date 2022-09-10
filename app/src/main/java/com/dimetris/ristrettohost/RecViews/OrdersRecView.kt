@@ -2,6 +2,7 @@ package com.dimetris.ristrettohost.RecViews
 
 import android.app.Activity
 import android.content.res.ColorStateList
+import android.provider.Settings
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -11,12 +12,16 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.dimetris.ristrettohost.CasherSection.CasherFuncs
 import com.dimetris.ristrettohost.CommonsSection.CommonFuncs
+import com.dimetris.ristrettohost.Models.RISHostNotification
 import com.dimetris.ristrettohost.Models.RISReadyOrderShort
 import com.dimetris.ristrettohost.R
 import com.google.firebase.database.*
 import com.google.gson.Gson
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
-class OrdersRecView (val data : ArrayList<RISReadyOrderShort>, val activity: Activity,val FullRef: DatabaseReference,val ShortRef:DatabaseReference,val purpose:Int) : RecyclerView.Adapter<OrderSViewHolder>() {
+class OrdersRecView (val data : ArrayList<RISReadyOrderShort>, val activity: Activity,val FullRef: DatabaseReference,val ShortRef:DatabaseReference,val HostNotRef:DatabaseReference,val HostNotHisRef:DatabaseReference,val purpose:Int) : RecyclerView.Adapter<OrderSViewHolder>() {
 
     val commonFuncs = CommonFuncs()
     val casherFuncs = CasherFuncs()
@@ -56,12 +61,10 @@ class OrdersRecView (val data : ArrayList<RISReadyOrderShort>, val activity: Act
                     if (snapshot.exists()){
                         casherFuncs.ShowOrderDetails(activity,snapshot)
                     }
-
                 }
                 override fun onCancelled(error: DatabaseError) {
                     Toast.makeText(activity, "حصل خطأ أثناء عرض التفاصيل", Toast.LENGTH_SHORT).show()
                 }
-
             })
         }
         when (data[position].OrderStatus) {
@@ -78,11 +81,23 @@ class OrdersRecView (val data : ArrayList<RISReadyOrderShort>, val activity: Act
                 holder.OrderConfirm.setTextColor(activity.resources.getColor(R.color.ris_white,null))
             }
         }
+
         if (purpose == 1){
             holder.OrderPending.setOnClickListener {
                 data[position].OrderStatus = 0
+                val notid = System.currentTimeMillis()
+                val notitle = "تعليق طلب طاولة رقم "+data[position].OrderTable
+                val notdesc = "تم وضع الطلب رقم "+data[position].OrderId+" صاحب طاولة رقم "+data[position].OrderTable+" في حالة الانتظار."
+                val notdata = RISHostNotification(notid,data[position].OrderId,data[position].OrderStatus,data[position].OrderTable,notitle,notdesc,data[position].OrderDeviceId,
+                    SimpleDateFormat("HH:mm:ss", Locale.ENGLISH).format(Date()),
+                    SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).format(Date())
+                )
+                val rawnotdata = gson.toJson(notdata).toString()
                 val rawdatashort = gson.toJson(data[position]).toString()
+
                 ShortRef.child(data[position].OrderDate).child(data[position].OrderId).setValue(rawdatashort)
+                HostNotRef.child(data[position].OrderDeviceId.toString()).setValue(rawnotdata)
+                HostNotHisRef.child(data[position].OrderDeviceId.toString()).child(data[position].OrderDate).child(notid.toString()).setValue(rawnotdata)
                 holder.OrderPending.backgroundTintList = ColorStateList.valueOf(activity.resources.getColor(R.color.ris_grey,null))
                 holder.OrderPending.setTextColor(activity.resources.getColor(R.color.ris_white,null))
                 holder.OrderDelete.backgroundTintList = null
@@ -92,8 +107,19 @@ class OrdersRecView (val data : ArrayList<RISReadyOrderShort>, val activity: Act
             }
             holder.OrderDelete.setOnClickListener {
                 data[position].OrderStatus = 1
+                val notid = System.currentTimeMillis()
+                val notitle = "تم إلغاء طلب طاولة رقم "+data[position].OrderTable
+                val notdesc = "تم إلغاء طلب رقم "+data[position].OrderId+" صاحب طاولة رقم "+data[position].OrderTable+"."
+                val notdata = RISHostNotification(notid,data[position].OrderId,data[position].OrderStatus,data[position].OrderTable,notitle,notdesc,data[position].OrderDeviceId,
+                    SimpleDateFormat("HH:mm:ss", Locale.ENGLISH).format(Date()),
+                    SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).format(Date())
+                )
+                val rawnotdata = gson.toJson(notdata).toString()
                 val rawdatashort = gson.toJson(data[position]).toString()
+
                 ShortRef.child(data[position].OrderDate).child(data[position].OrderId).setValue(rawdatashort)
+                HostNotRef.child(data[position].OrderDeviceId.toString()).setValue(rawnotdata)
+                HostNotHisRef.child(data[position].OrderDeviceId.toString()).child(data[position].OrderDate).child(notid.toString()).setValue(rawnotdata)
                 holder.OrderPending.backgroundTintList = null
                 holder.OrderPending.setTextColor(activity.resources.getColor(R.color.ris_grey,null))
                 holder.OrderDelete.backgroundTintList = ColorStateList.valueOf(activity.resources.getColor(R.color.ris_red_2,null))
@@ -103,8 +129,19 @@ class OrdersRecView (val data : ArrayList<RISReadyOrderShort>, val activity: Act
             }
             holder.OrderConfirm.setOnClickListener {
                 data[position].OrderStatus = 2
+                val notid = System.currentTimeMillis()
+                val notitle = "اكتمال طلب طاولة رقم "+data[position].OrderTable
+                val notdesc = "طلب رقم "+data[position].OrderId+" صاحب طاولة رقم "+data[position].OrderTable+" مكتمل وجاهز للتسليم ."
+                val notdata = RISHostNotification(notid,data[position].OrderId,data[position].OrderStatus,data[position].OrderTable,notitle,notdesc,data[position].OrderDeviceId,
+                    SimpleDateFormat("HH:mm:ss", Locale.ENGLISH).format(Date()),
+                    SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).format(Date())
+                )
+                val rawnotdata = gson.toJson(notdata).toString()
                 val rawdatashort = gson.toJson(data[position]).toString()
+
                 ShortRef.child(data[position].OrderDate).child(data[position].OrderId).setValue(rawdatashort)
+                HostNotRef.child(data[position].OrderDeviceId.toString()).setValue(rawnotdata)
+                HostNotHisRef.child(data[position].OrderDeviceId.toString()).child(data[position].OrderDate).child(notid.toString()).setValue(rawnotdata)
                 holder.OrderPending.backgroundTintList = null
                 holder.OrderPending.setTextColor(activity.resources.getColor(R.color.ris_grey,null))
                 holder.OrderDelete.backgroundTintList = null
@@ -112,8 +149,6 @@ class OrdersRecView (val data : ArrayList<RISReadyOrderShort>, val activity: Act
                 holder.OrderConfirm.backgroundTintList = ColorStateList.valueOf(activity.resources.getColor(R.color.ris_green,null))
                 holder.OrderConfirm.setTextColor(activity.resources.getColor(R.color.ris_white,null))
             }
-        }else{
-
         }
 
 
@@ -127,6 +162,7 @@ class OrderSViewHolder (view: View) : RecyclerView.ViewHolder(view) {
     val OrderDate = view.findViewById<TextView>(R.id.OrderDate)
     val OrderDetails = view.findViewById<TextView>(R.id.OrderDetails)
     val OrderTotal = view.findViewById<TextView>(R.id.OrderTotal)
+
     val OrderPending = view.findViewById<TextView>(R.id.OrderPending)
     val OrderDelete = view.findViewById<TextView>(R.id.OrderDelete)
     val OrderConfirm = view.findViewById<TextView>(R.id.OrderConfirm)
